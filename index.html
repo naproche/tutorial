@@ -1,0 +1,142 @@
+<!DOCTYPE HTML>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Natural Proving with Naproche - Natural Proving with Naproche</title>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+        <link rel="stylesheet" href="book.css">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+        <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:500" rel="stylesheet" type="text/css">
+
+        <link rel="shortcut icon" href="favicon.png">
+
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme -->
+        
+
+        
+        <!-- MathJax -->
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        
+
+        <!-- Fetch Clipboard.js from CDN but have a local fallback -->
+        <script src="https://cdn.jsdelivr.net/clipboard.js/1.6.1/clipboard.min.js"></script>
+        <script>
+            if (typeof Clipboard == 'undefined') {
+                document.write(unescape("%3Cscript src='clipboard.min.js'%3E%3C/script%3E"));
+            }
+        </script>
+
+        <!-- Fetch JQuery from CDN but have a local fallback -->
+        <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+        <script>
+            if (typeof jQuery == 'undefined') {
+                document.write(unescape("%3Cscript src='jquery.js'%3E%3C/script%3E"));
+            }
+        </script>
+
+        <!-- Fetch store.js from local - TODO add CDN when 2.x.x is available on cdnjs -->
+        <script src="store.js"></script>
+
+    </head>
+    <body class="light">
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme = store.get('mdbook-theme');
+            if (theme === null || theme === undefined) { theme = 'light'; }
+            $('body').removeClass().addClass(theme);
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var sidebar = store.get('mdbook-sidebar');
+            if (sidebar === "hidden") { $("html").addClass("sidebar-hidden") }
+            else if (sidebar === "visible") { $("html").addClass("sidebar-visible") }
+        </script>
+
+        <div id="sidebar" class="sidebar">
+            <ul class="chapter"><li class="affix"><a href="title_page.html" class="active">Natural Proving with Naproche</a></li><li><a href="./introduction.html"><strong>1.</strong> Introduction</a></li><li><a href="./a_quick_introduction.html"><strong>2.</strong> Quick Start: 1 + 2 = 3 </a></li><li><a href="./mathematical_structures.html"><strong>3.</strong> Mathematical Structures</a></li><li><a href="./natural_language_aspects.html"><strong>4.</strong> Natural Language Aspects</a></li><li><a href="./terms.html"><strong>5.</strong> Terms</a></li><li><a href="./numbers.html"><strong>6.</strong> Numbers</a></li><li><a href="./proving_equations.html"><strong>7.</strong> Proving Equations</a></li><li><a href="./binomial_identities.html"><strong>8.</strong> Proving Binomial Identities in Naproche</a></li><li><a href="./ontological_correctness.html"><strong>9.</strong> Ontological Correctness</a></li><li><a href="./prettyprinting.html"><strong>10.</strong> LaTeX Prettyprinting</a></li><li><a href="./fractional_arithmetic.html"><strong>11.</strong> Fractional Arithmetic</a></li><li><strong>12.</strong> Relations</li><li><strong>13.</strong> Propositional Logic</li><li><strong>14.</strong> The Ordered Field of Reals</li><li><strong>15.</strong> Proving Inequalities</li><li><strong>16.</strong> ForTheL Statements and First-Order Logic</li><li><strong>17.</strong> The Natural Numbers</li><li><strong>18.</strong> Complete Induction</li><li><strong>19.</strong> Sets</li><li><strong>20.</strong> Functions</li><li><strong>21.</strong> ...</li></ul>
+        </div>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page" tabindex="-1">
+                
+                <div id="menu-bar" class="menu-bar">
+                    <div class="left-buttons">
+                        <i id="sidebar-toggle" class="fa fa-bars" title="Toggle sidebar"></i>
+                        <i id="theme-toggle" class="fa fa-paint-brush" title="Change theme"></i>
+                    </div>
+
+                    <h1 class="menu-title">Natural Proving with Naproche</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html">
+                            <i id="print-button" class="fa fa-print" title="Print this book"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div id="content" class="content">
+                    <a class="header" href="title_page.html#natural-proving-with-naproche" id="natural-proving-with-naproche"><h1>Natural Proving with Naproche</h1></a>
+<a class="header" href="title_page.html#an-interactive-course-on-writing-proofs-in-natural-mathematical-language-with-computer-checking-of-logical-correctness" id="an-interactive-course-on-writing-proofs-in-natural-mathematical-language-with-computer-checking-of-logical-correctness"><h2>An interactive course on writing proofs in natural mathematical language, with computer-checking of logical correctness</h2></a>
+<p><em>by Peter Koepke, with contributions from the Naproche Community</em></p>
+
+                </div>
+
+                <!-- Mobile navigation buttons -->
+                
+
+                
+                    <a rel="next" href="./introduction.html" class="mobile-nav-chapters next" title="Next chapter">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+                
+
+            </div>
+
+            
+
+            
+                <a href="./introduction.html" class="nav-chapters next" title="You can navigate through the chapters using the arrow keys">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+            
+
+        </div>
+
+
+        <!-- Local fallback for Font Awesome -->
+        <script>
+            if ($(".fa").css("font-family") !== "FontAwesome") {
+                $('<link rel="stylesheet" type="text/css" href="_FontAwesome/css/font-awesome.css">').prependTo('head');
+            }
+        </script>
+
+        <!-- Livereload script (if served using the cli tool) -->
+        
+
+        
+
+        
+
+        
+
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
+
+        <!-- Custom JS script -->
+        
+
+    </body>
+</html>

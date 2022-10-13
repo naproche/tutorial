@@ -1,0 +1,16 @@
+[book]
+authors = ["Peter Koepke"]
+language = "en"
+multilingual = false
+src = "."
+title = "Natural Proving with Naproche"
+
+[build]
+build-dir = "out"
+
+[output.html]
+mathjax-support = true
+git-repository-url = "https://github.com/leanprover/theorem_proving_in_lean4"
+
+[output.html.playground.boring-prefixes]
+lean = "# "

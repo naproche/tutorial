@@ -1,0 +1,337 @@
+<!DOCTYPE HTML>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Introduction - Natural Proving with Naproche</title>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <base href="">
+
+        <link rel="stylesheet" href="book.css">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+        <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:500" rel="stylesheet" type="text/css">
+
+        <link rel="shortcut icon" href="favicon.png">
+
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme -->
+        
+
+        
+        <!-- MathJax -->
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        
+
+        <!-- Fetch Clipboard.js from CDN but have a local fallback -->
+        <script src="https://cdn.jsdelivr.net/clipboard.js/1.6.1/clipboard.min.js"></script>
+        <script>
+            if (typeof Clipboard == 'undefined') {
+                document.write(unescape("%3Cscript src='clipboard.min.js'%3E%3C/script%3E"));
+            }
+        </script>
+
+        <!-- Fetch JQuery from CDN but have a local fallback -->
+        <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+        <script>
+            if (typeof jQuery == 'undefined') {
+                document.write(unescape("%3Cscript src='jquery.js'%3E%3C/script%3E"));
+            }
+        </script>
+
+        <!-- Fetch store.js from local - TODO add CDN when 2.x.x is available on cdnjs -->
+        <script src="store.js"></script>
+
+    </head>
+    <body class="light">
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme = store.get('mdbook-theme');
+            if (theme === null || theme === undefined) { theme = 'light'; }
+            $('body').removeClass().addClass(theme);
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var sidebar = store.get('mdbook-sidebar');
+            if (sidebar === "hidden") { $("html").addClass("sidebar-hidden") }
+            else if (sidebar === "visible") { $("html").addClass("sidebar-visible") }
+        </script>
+
+        <div id="sidebar" class="sidebar">
+            <ul class="chapter"><li class="affix"><a href="title_page.html">Natural Proving with Naproche</a></li><li><a href="./introduction.html" class="active"><strong>1.</strong> Introduction</a></li><li><a href="./a_quick_introduction.html"><strong>2.</strong> Quick Start: 1 + 2 = 3 </a></li><li><a href="./mathematical_structures.html"><strong>3.</strong> Mathematical Structures</a></li><li><a href="./natural_language_aspects.html"><strong>4.</strong> Natural Language Aspects</a></li><li><a href="./terms.html"><strong>5.</strong> Terms</a></li><li><a href="./numbers.html"><strong>6.</strong> Numbers</a></li><li><a href="./proving_equations.html"><strong>7.</strong> Proving Equations</a></li><li><a href="./binomial_identities.html"><strong>8.</strong> Proving Binomial Identities in Naproche</a></li><li><a href="./ontological_correctness.html"><strong>9.</strong> Ontological Correctness</a></li><li><a href="./prettyprinting.html"><strong>10.</strong> LaTeX Prettyprinting</a></li><li><a href="./fractional_arithmetic.html"><strong>11.</strong> Fractional Arithmetic</a></li><li><strong>12.</strong> Relations</li><li><strong>13.</strong> Propositional Logic</li><li><strong>14.</strong> The Ordered Field of Reals</li><li><strong>15.</strong> Proving Inequalities</li><li><strong>16.</strong> ForTheL Statements and First-Order Logic</li><li><strong>17.</strong> The Natural Numbers</li><li><strong>18.</strong> Complete Induction</li><li><strong>19.</strong> Sets</li><li><strong>20.</strong> Functions</li><li><strong>21.</strong> ...</li></ul>
+        </div>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page" tabindex="-1">
+                
+                <div id="menu-bar" class="menu-bar">
+                    <div class="left-buttons">
+                        <i id="sidebar-toggle" class="fa fa-bars" title="Toggle sidebar"></i>
+                        <i id="theme-toggle" class="fa fa-paint-brush" title="Change theme"></i>
+                    </div>
+
+                    <h1 class="menu-title">Natural Proving with Naproche</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html">
+                            <i id="print-button" class="fa fa-print" title="Print this book"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div id="content" class="content">
+                    <a class="header" href="./introduction.html#introduction" id="introduction"><h1>Introduction</h1></a>
+<p>The language found in mathematical books and
+journal articles combines natural language
+and symbolic terms. Natural language in general is
+highly complex and informal.
+In contrast the typical language of mathematical proofs
+only uses language
+constructs which help to communicate mathematical information in
+intuitive and concise ways. That part of natural language has a
+more formal character and is indeed amenable to formal
+grammars and computer processing.</p>
+<p>There are few linguistic studies of the language of mathematics
+although it appears to be a fruitful subject area
+due its transparent and
+ideally unique mathematical meaning.
+The teaching of mathematics involves the teaching
+of the language of mathematics, at least implicitly by example and
+imitation. Students are presented
+with a limited repository of phrases that suffice for standard
+mathematical statements and proof methods.</p>
+<p>Mathematical culture has historically developed a sense of
+elegance or even &quot;beauty&quot; of mathematical texts.
+Let us jump ahead and look at
+Euclid's proof of the infinitude of primes which we will
+eventually cover in this book. The <em>Proofs from THE BOOK</em> by
+M. Aigner and G. M. Ziegler is devoted to &quot;beautiful&quot; proofs.
+There Euclid's proof reads as follows:</p>
+<p><em>For any ﬁnite set \( \lbrace p_1,\dots,p_r \rbrace \) of primes, consider
+the number \(n = p_1 p_2 \cdots p_r + 1\).
+This \(n\) has a prime divisor \(p\). But \(p\) is
+not one of the \(p_i\): otherwise \(p\) would be a
+divisor of \(n\) and of the product
+\(p_1 p_2 \cdots p_r\), and thus also of the difference
+\(n − p_1 p_2 \cdots p_r = 1\), which is
+impossible. So a ﬁnite set
+\(\lbrace p_1,\dots,p_r \rbrace\) cannot be the collection of all prime
+numbers.</em></p>
+<p>Obviously, this is a dense text, where
+some sentences encompass several logical steps. This is adequate
+for expert readers, but dividing the proof up into single
+steps may be helpful for beginners and may better
+expose the structure of the argument:</p>
+<ol>
+<li><strong>Theorem.</strong> <em>The collection of all prime numbers is infinite.</em></li>
+<li><strong>Proof.</strong></li>
+<li><em>Let \( \lbrace p_1,\dots,p_r \rbrace \) be a finite set of primes.</em></li>
+<li><em>Consider the number \(n = p_1 p_2 \cdots p_r + 1\).</em></li>
+<li><em>This \(n\) has a prime divisor \(p\).</em></li>
+<li><strong>Claim:</strong> <em>(But) \(p\) is not one of the \(p_i\).</em></li>
+<li><strong>Proof</strong> <em>by contradiction:</em></li>
+<li><em>Assume (otherwise) that</em> \(p\) <em>is one of the \(p_i\).</em></li>
+<li><em>Then \(p\) is a divisor of \(n\).</em></li>
+<li><em>\(p\) is a divisor of the product
+\(p_1 p_2 \cdots p_r\).</em></li>
+<li><em>\(p\) is (also) a divisor of the difference
+\(n − p_1 p_2 \cdots p_r = 1\).</em></li>
+<li><em>(which is impossible) Contradiction.</em></li>
+<li><strong>Qed.</strong> <em>(Claim)</em></li>
+<li><em>So a ﬁnite set \(\lbrace p_1,\dots,p_r \rbrace\)
+cannot be the collection of all prime
+numbers.</em></li>
+<li><strong>Qed.</strong> <em>(Theorem)</em></li>
+</ol>
+<p>This reformulation shows the (nested) proof structure of the argument.
+The theorem to be proved and also the embedded claim are emphasized.
+The grammatical structure of the text has been simplified by
+avoiding long sentences and subsentences. One could go further
+by eliminating the subjunctive form which originally signalled the
+proof by contradiction.</p>
+<p>The reformulation is somewhat similar to a rephrasing in a kind of
+<em>simple English</em>. The study of
+the foundations of mathematics has actually shown
+that mathematics can
+in principle be carried out in a <em>very</em> restricted language
+with <em>very few</em> kinds of proof steps.</p>
+<p>So it appears conceivable that by such reformulations one can write
+mathematical texts that whilst being naturally readable are accessible
+to computer parsing and proof checking.</p>
+<a class="header" href="./introduction.html#about-naproche" id="about-naproche"><h2>About Naproche</h2></a>
+<p><em>Formal Mathematics</em> is the programme to carry out (pure) mathematics
+in complete formality. By the foundational results alluded to
+above this is <em>in
+principle</em>
+possible. High complexities, however, require strong
+computer support.
+It is thus not surprising that current formalization languages for
+mathematics resemble programming languages with rigid,
+<em>non-natural</em> grammars.
+Moreover, the global structure of formalization texts often differs
+substantially from the representation in textbooks or lectures.
+These differences are seen as major obstacles to the
+wider acceptance of formal mathematics.</p>
+<p>The main idea of <em>Naproche</em> (for Natural Proof Checking)
+is that in a <em>restricted</em> natural language
+it should be possible to write mathematical texts which are naturally
+<em>readable
+by mathematicians</em> and which simultaneously are sufficiently formal so
+that they can be parsed and <em>proof-checked by computers</em>.
+Modern linguistic methods are utilized to process
+natural language input, and
+strong automated theorem proving fill in
+proof gaps. Here is a rendering of Euclid's argument
+in the Naproche system, using LaTeX typesetting:</p>
+<p><em>Signature 44. \(\mathbb{P}\) is the collection of prime natural numbers.</em></p>
+<p><em>Theorem 45. (Euclid) \(\mathbb{P}\) is infinite.</em>
+<br>
+<em>Proof. Assume that \(r\) is a natural number and
+\(p\) is a sequence of length
+\(r\) and \(\lbrace p_1,\dots,p_r\rbrace\) is a subclass of \(\mathbb{P}\).
+\(p_i\) is a nonzero natural number
+for every \(i \in Dom\ p\).
+Consider \(n = p_1 \cdots p_r + 1\).
+\(p_1 \cdots p_r\) is
+nonzero (by Factorproperty).
+\(n\) is nontrivial. Take a prime divisor \(q\) of
+\(n\).</em>
+<br>
+<em>Let us show that \(q \neq p_i\) for all \(i\)
+such that \(1 \leq i \leq r\).</em>
+<br>
+<em>Proof by contradiction. Assume that \(q = p_i\)
+for some natural number
+\(i\) such that \(1 \leq i \leq r\). \(q\) is a divisor
+of \(n\). \(q\) is a divisor of
+\(p_1 \cdots p_r\) (by
+Factorproperty, 1).
+Thus \(q\) divides \(1\). Contradiction. qed.</em>
+<br>
+<em>Hence \(\lbrace p_1,\dots,p_r\rbrace\) is not the
+class of prime natural numbers.</em></p>
+<p>Naproche has been developed since 2017 as a &quot;natural proof assistant&quot;,
+based on two previous
+projects on proof checking with
+natural language input: the <em>Evidence Algorithm</em> project
+initiated by Victor Glushkov, leading eventually to the SAD system by
+Andrei Paskevich, and the original Naproche initiative with a mainly
+linguistic orientation.</p>
+<p>Naproche is distributed as part of
+the <a href="https://isabelle.in.tum.de/">Isabelle prover platform</a>,
+which can easily be installed under the major operation systems.
+Opening a file in the Naproche input formats <code>.ftl</code> or <code>.ftl.tex</code>
+in the Isabelle editor Isabelle/jEdit will
+immediately activate proof checking by Naproche.</p>
+<a class="header" href="./introduction.html#about-this-book" id="about-this-book"><h2>About this Book</h2></a>
+<p>This book teaches structured mathematical proofs
+in simple natural language and in particular in
+the controlled natural language <em>ForTheL</em>
+(for Formula Theory Language) which is the input language
+of Naproche. ForTheL is intended to
+approximate the common mathematical language whilst
+being computer checkable.
+We shall go through proof techniques
+in the unrestricted language of mathematics and then discuss
+their implementations in Naproche. Naproche proofs will be <em>interactive</em>
+in the sense that human users provide expicit proof steps
+whilst the computer checks whether missing details can be filled
+in implicitly.</p>
+<p>Examples and exercises will be about standard
+proofs and Naproche proofs. As regards mathematical content
+we shall deal with
+an axiomatic development of the usual number systems, starting from
+an arbitrary field of numbers and specializing to real, rational
+and natural numbers.</p>
+<p>This book is about two dialects of natural language -
+ordinary mathematical language and its sublanguage ForTheL.
+In contrast to programming languages, these languages cannot be
+learnt efficiently by specifying
+a small and systematic grammar - although ForTheL is algorithmically
+defined by the Naproche Parser. Instead, as with ordinary
+language,
+natural mathematical languages have to be learned by experience
+and by trial and error.
+It is very important
+to go ahead and experiment. &quot;Free&quot; mathematical texts can be
+approximated
+by ForTheL reformulations, which can be checked by Naproche, with
+some user feedback.</p>
+<p>This course should be studied interactively in your browser.
+It contains sections
+of ForTheL texts which can be copied by pressing the copy symbol
+in the upper corner and used directly as input
+to Naproche. It is suggested that you use the
+<a href="https://naproche.github.io/#/">Naproche web interface</a> in
+another browser window or tab, so that you can insert and edit
+text in the interface and check or translate it. The text has been
+tested with Eprover on the remote
+<a href="https://www.tptp.org/cgi-bin/SystemOnTPTP">TPTP server</a>.
+This powerful background prover
+can be chosen via the <em>Prover</em> menue in the web interface.</p>
+
+                </div>
+
+                <!-- Mobile navigation buttons -->
+                
+                    <a rel="prev" href="title_page.html" class="mobile-nav-chapters previous" title="Previous chapter">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                
+
+                
+                    <a rel="next" href="./a_quick_introduction.html" class="mobile-nav-chapters next" title="Next chapter">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+                
+
+            </div>
+
+            
+                <a href="title_page.html" class="nav-chapters previous" title="You can navigate through the chapters using the arrow keys">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+            
+
+            
+                <a href="./a_quick_introduction.html" class="nav-chapters next" title="You can navigate through the chapters using the arrow keys">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+            
+
+        </div>
+
+
+        <!-- Local fallback for Font Awesome -->
+        <script>
+            if ($(".fa").css("font-family") !== "FontAwesome") {
+                $('<link rel="stylesheet" type="text/css" href="_FontAwesome/css/font-awesome.css">').prependTo('head');
+            }
+        </script>
+
+        <!-- Livereload script (if served using the cli tool) -->
+        
+
+        
+
+        
+
+        
+
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
+
+        <!-- Custom JS script -->
+        
+
+    </body>
+</html>

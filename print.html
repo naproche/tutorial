@@ -1,0 +1,2273 @@
+<!DOCTYPE HTML>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Natural Proving with Naproche</title>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <base href="">
+
+        <link rel="stylesheet" href="book.css">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+        <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:500" rel="stylesheet" type="text/css">
+
+        <link rel="shortcut icon" href="favicon.png">
+
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme -->
+        
+
+        
+        <!-- MathJax -->
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        
+
+        <!-- Fetch Clipboard.js from CDN but have a local fallback -->
+        <script src="https://cdn.jsdelivr.net/clipboard.js/1.6.1/clipboard.min.js"></script>
+        <script>
+            if (typeof Clipboard == 'undefined') {
+                document.write(unescape("%3Cscript src='clipboard.min.js'%3E%3C/script%3E"));
+            }
+        </script>
+
+        <!-- Fetch JQuery from CDN but have a local fallback -->
+        <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+        <script>
+            if (typeof jQuery == 'undefined') {
+                document.write(unescape("%3Cscript src='jquery.js'%3E%3C/script%3E"));
+            }
+        </script>
+
+        <!-- Fetch store.js from local - TODO add CDN when 2.x.x is available on cdnjs -->
+        <script src="store.js"></script>
+
+    </head>
+    <body class="light">
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme = store.get('mdbook-theme');
+            if (theme === null || theme === undefined) { theme = 'light'; }
+            $('body').removeClass().addClass(theme);
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var sidebar = store.get('mdbook-sidebar');
+            if (sidebar === "hidden") { $("html").addClass("sidebar-hidden") }
+            else if (sidebar === "visible") { $("html").addClass("sidebar-visible") }
+        </script>
+
+        <div id="sidebar" class="sidebar">
+            <ul class="chapter"><li class="affix"><a href="title_page.html">Natural Proving with Naproche</a></li><li><a href="./introduction.html"><strong>1.</strong> Introduction</a></li><li><a href="./a_quick_introduction.html"><strong>2.</strong> Quick Start: 1 + 2 = 3 </a></li><li><a href="./mathematical_structures.html"><strong>3.</strong> Mathematical Structures</a></li><li><a href="./natural_language_aspects.html"><strong>4.</strong> Natural Language Aspects</a></li><li><a href="./terms.html"><strong>5.</strong> Terms</a></li><li><a href="./numbers.html"><strong>6.</strong> Numbers</a></li><li><a href="./proving_equations.html"><strong>7.</strong> Proving Equations</a></li><li><a href="./binomial_identities.html"><strong>8.</strong> Proving Binomial Identities in Naproche</a></li><li><a href="./ontological_correctness.html"><strong>9.</strong> Ontological Correctness</a></li><li><a href="./prettyprinting.html"><strong>10.</strong> LaTeX Prettyprinting</a></li><li><a href="./fractional_arithmetic.html"><strong>11.</strong> Fractional Arithmetic</a></li><li><strong>12.</strong> Relations</li><li><strong>13.</strong> Propositional Logic</li><li><strong>14.</strong> The Ordered Field of Reals</li><li><strong>15.</strong> Proving Inequalities</li><li><strong>16.</strong> ForTheL Statements and First-Order Logic</li><li><strong>17.</strong> The Natural Numbers</li><li><strong>18.</strong> Complete Induction</li><li><strong>19.</strong> Sets</li><li><strong>20.</strong> Functions</li><li><strong>21.</strong> ...</li></ul>
+        </div>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page" tabindex="-1">
+                
+                <div id="menu-bar" class="menu-bar">
+                    <div class="left-buttons">
+                        <i id="sidebar-toggle" class="fa fa-bars" title="Toggle sidebar"></i>
+                        <i id="theme-toggle" class="fa fa-paint-brush" title="Change theme"></i>
+                    </div>
+
+                    <h1 class="menu-title">Natural Proving with Naproche</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html">
+                            <i id="print-button" class="fa fa-print" title="Print this book"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div id="content" class="content">
+                    <a class="header" href="print.html#natural-proving-with-naproche" id="natural-proving-with-naproche"><h1>Natural Proving with Naproche</h1></a>
+<a class="header" href="print.html#an-interactive-course-on-writing-proofs-in-natural-mathematical-language-with-computer-checking-of-logical-correctness" id="an-interactive-course-on-writing-proofs-in-natural-mathematical-language-with-computer-checking-of-logical-correctness"><h2>An interactive course on writing proofs in natural mathematical language, with computer-checking of logical correctness</h2></a>
+<p><em>by Peter Koepke, with contributions from the Naproche Community</em></p>
+<a class="header" href="print.html#introduction" id="introduction"><h1>Introduction</h1></a>
+<p>The language found in mathematical books and
+journal articles combines natural language
+and symbolic terms. Natural language in general is
+highly complex and informal.
+In contrast the typical language of mathematical proofs
+only uses language
+constructs which help to communicate mathematical information in
+intuitive and concise ways. That part of natural language has a
+more formal character and is indeed amenable to formal
+grammars and computer processing.</p>
+<p>There are few linguistic studies of the language of mathematics
+although it appears to be a fruitful subject area
+due its transparent and
+ideally unique mathematical meaning.
+The teaching of mathematics involves the teaching
+of the language of mathematics, at least implicitly by example and
+imitation. Students are presented
+with a limited repository of phrases that suffice for standard
+mathematical statements and proof methods.</p>
+<p>Mathematical culture has historically developed a sense of
+elegance or even &quot;beauty&quot; of mathematical texts.
+Let us jump ahead and look at
+Euclid's proof of the infinitude of primes which we will
+eventually cover in this book. The <em>Proofs from THE BOOK</em> by
+M. Aigner and G. M. Ziegler is devoted to &quot;beautiful&quot; proofs.
+There Euclid's proof reads as follows:</p>
+<p><em>For any ﬁnite set \( \lbrace p_1,\dots,p_r \rbrace \) of primes, consider
+the number \(n = p_1 p_2 \cdots p_r + 1\).
+This \(n\) has a prime divisor \(p\). But \(p\) is
+not one of the \(p_i\): otherwise \(p\) would be a
+divisor of \(n\) and of the product
+\(p_1 p_2 \cdots p_r\), and thus also of the difference
+\(n − p_1 p_2 \cdots p_r = 1\), which is
+impossible. So a ﬁnite set
+\(\lbrace p_1,\dots,p_r \rbrace\) cannot be the collection of all prime
+numbers.</em></p>
+<p>Obviously, this is a dense text, where
+some sentences encompass several logical steps. This is adequate
+for expert readers, but dividing the proof up into single
+steps may be helpful for beginners and may better
+expose the structure of the argument:</p>
+<ol>
+<li><strong>Theorem.</strong> <em>The collection of all prime numbers is infinite.</em></li>
+<li><strong>Proof.</strong></li>
+<li><em>Let \( \lbrace p_1,\dots,p_r \rbrace \) be a finite set of primes.</em></li>
+<li><em>Consider the number \(n = p_1 p_2 \cdots p_r + 1\).</em></li>
+<li><em>This \(n\) has a prime divisor \(p\).</em></li>
+<li><strong>Claim:</strong> <em>(But) \(p\) is not one of the \(p_i\).</em></li>
+<li><strong>Proof</strong> <em>by contradiction:</em></li>
+<li><em>Assume (otherwise) that</em> \(p\) <em>is one of the \(p_i\).</em></li>
+<li><em>Then \(p\) is a divisor of \(n\).</em></li>
+<li><em>\(p\) is a divisor of the product
+\(p_1 p_2 \cdots p_r\).</em></li>
+<li><em>\(p\) is (also) a divisor of the difference
+\(n − p_1 p_2 \cdots p_r = 1\).</em></li>
+<li><em>(which is impossible) Contradiction.</em></li>
+<li><strong>Qed.</strong> <em>(Claim)</em></li>
+<li><em>So a ﬁnite set \(\lbrace p_1,\dots,p_r \rbrace\)
+cannot be the collection of all prime
+numbers.</em></li>
+<li><strong>Qed.</strong> <em>(Theorem)</em></li>
+</ol>
+<p>This reformulation shows the (nested) proof structure of the argument.
+The theorem to be proved and also the embedded claim are emphasized.
+The grammatical structure of the text has been simplified by
+avoiding long sentences and subsentences. One could go further
+by eliminating the subjunctive form which originally signalled the
+proof by contradiction.</p>
+<p>The reformulation is somewhat similar to a rephrasing in a kind of
+<em>simple English</em>. The study of
+the foundations of mathematics has actually shown
+that mathematics can
+in principle be carried out in a <em>very</em> restricted language
+with <em>very few</em> kinds of proof steps.</p>
+<p>So it appears conceivable that by such reformulations one can write
+mathematical texts that whilst being naturally readable are accessible
+to computer parsing and proof checking.</p>
+<a class="header" href="print.html#about-naproche" id="about-naproche"><h2>About Naproche</h2></a>
+<p><em>Formal Mathematics</em> is the programme to carry out (pure) mathematics
+in complete formality. By the foundational results alluded to
+above this is <em>in
+principle</em>
+possible. High complexities, however, require strong
+computer support.
+It is thus not surprising that current formalization languages for
+mathematics resemble programming languages with rigid,
+<em>non-natural</em> grammars.
+Moreover, the global structure of formalization texts often differs
+substantially from the representation in textbooks or lectures.
+These differences are seen as major obstacles to the
+wider acceptance of formal mathematics.</p>
+<p>The main idea of <em>Naproche</em> (for Natural Proof Checking)
+is that in a <em>restricted</em> natural language
+it should be possible to write mathematical texts which are naturally
+<em>readable
+by mathematicians</em> and which simultaneously are sufficiently formal so
+that they can be parsed and <em>proof-checked by computers</em>.
+Modern linguistic methods are utilized to process
+natural language input, and
+strong automated theorem proving fill in
+proof gaps. Here is a rendering of Euclid's argument
+in the Naproche system, using LaTeX typesetting:</p>
+<p><em>Signature 44. \(\mathbb{P}\) is the collection of prime natural numbers.</em></p>
+<p><em>Theorem 45. (Euclid) \(\mathbb{P}\) is infinite.</em>
+<br>
+<em>Proof. Assume that \(r\) is a natural number and
+\(p\) is a sequence of length
+\(r\) and \(\lbrace p_1,\dots,p_r\rbrace\) is a subclass of \(\mathbb{P}\).
+\(p_i\) is a nonzero natural number
+for every \(i \in Dom\ p\).
+Consider \(n = p_1 \cdots p_r + 1\).
+\(p_1 \cdots p_r\) is
+nonzero (by Factorproperty).
+\(n\) is nontrivial. Take a prime divisor \(q\) of
+\(n\).</em>
+<br>
+<em>Let us show that \(q \neq p_i\) for all \(i\)
+such that \(1 \leq i \leq r\).</em>
+<br>
+<em>Proof by contradiction. Assume that \(q = p_i\)
+for some natural number
+\(i\) such that \(1 \leq i \leq r\). \(q\) is a divisor
+of \(n\). \(q\) is a divisor of
+\(p_1 \cdots p_r\) (by
+Factorproperty, 1).
+Thus \(q\) divides \(1\). Contradiction. qed.</em>
+<br>
+<em>Hence \(\lbrace p_1,\dots,p_r\rbrace\) is not the
+class of prime natural numbers.</em></p>
+<p>Naproche has been developed since 2017 as a &quot;natural proof assistant&quot;,
+based on two previous
+projects on proof checking with
+natural language input: the <em>Evidence Algorithm</em> project
+initiated by Victor Glushkov, leading eventually to the SAD system by
+Andrei Paskevich, and the original Naproche initiative with a mainly
+linguistic orientation.</p>
+<p>Naproche is distributed as part of
+the <a href="https://isabelle.in.tum.de/">Isabelle prover platform</a>,
+which can easily be installed under the major operation systems.
+Opening a file in the Naproche input formats <code>.ftl</code> or <code>.ftl.tex</code>
+in the Isabelle editor Isabelle/jEdit will
+immediately activate proof checking by Naproche.</p>
+<a class="header" href="print.html#about-this-book" id="about-this-book"><h2>About this Book</h2></a>
+<p>This book teaches structured mathematical proofs
+in simple natural language and in particular in
+the controlled natural language <em>ForTheL</em>
+(for Formula Theory Language) which is the input language
+of Naproche. ForTheL is intended to
+approximate the common mathematical language whilst
+being computer checkable.
+We shall go through proof techniques
+in the unrestricted language of mathematics and then discuss
+their implementations in Naproche. Naproche proofs will be <em>interactive</em>
+in the sense that human users provide expicit proof steps
+whilst the computer checks whether missing details can be filled
+in implicitly.</p>
+<p>Examples and exercises will be about standard
+proofs and Naproche proofs. As regards mathematical content
+we shall deal with
+an axiomatic development of the usual number systems, starting from
+an arbitrary field of numbers and specializing to real, rational
+and natural numbers.</p>
+<p>This book is about two dialects of natural language -
+ordinary mathematical language and its sublanguage ForTheL.
+In contrast to programming languages, these languages cannot be
+learnt efficiently by specifying
+a small and systematic grammar - although ForTheL is algorithmically
+defined by the Naproche Parser. Instead, as with ordinary
+language,
+natural mathematical languages have to be learned by experience
+and by trial and error.
+It is very important
+to go ahead and experiment. &quot;Free&quot; mathematical texts can be
+approximated
+by ForTheL reformulations, which can be checked by Naproche, with
+some user feedback.</p>
+<p>This course should be studied interactively in your browser.
+It contains sections
+of ForTheL texts which can be copied by pressing the copy symbol
+in the upper corner and used directly as input
+to Naproche. It is suggested that you use the
+<a href="https://naproche.github.io/#/">Naproche web interface</a> in
+another browser window or tab, so that you can insert and edit
+text in the interface and check or translate it. The text has been
+tested with Eprover on the remote
+<a href="https://www.tptp.org/cgi-bin/SystemOnTPTP">TPTP server</a>.
+This powerful background prover
+can be chosen via the <em>Prover</em> menue in the web interface.</p>
+<a class="header" href="print.html#quick-start-1--2--3" id="quick-start-1--2--3"><h1>Quick Start: 1 + 2 = 3</h1></a>
+<p>Proving theorems (and lemmas, and propositions) is central to (pure)
+mathematics. First, assumptions are clearly laid out, after which
+consequences are proved by applying logical transformations.
+Assumptions are introduced as <em>definitions</em>, <em>axioms</em>
+or indeed other theorems.
+In self-contained presentations also the language
+(or <em>signature</em>) of the argument
+has to be introduced beforehand. This leads to (nested) text structurings
+by</p>
+<p><em>Signature</em> / <em>Definition</em> / <em>Axiom</em> / <em>Theorem</em> / <em>Proof</em> - Sections.</p>
+<p>Let us consider an example text which proves
+\(1 + 2 = 3\) from minimal
+assumptions on natural numbers:</p>
+<pre><code class="language-lean">[synonym number/numbers]
+Signature. A natural number is a mathematical object.
+Signature. 0 is a natural number.
+Signature. 1 is a natural number.
+Signature. Assume that k,l are natural numbers.
+k + l is a natural number.
+Definition. 2 = 1 + 1.
+Definition. 3 = 2 + 1.
+Axiom. Assume that k,l,m are natural numbers.
+(k+l)+m=k+(l+m).
+Theorem. 1 + 2 = 3.
+Proof. 1 + 2 = 1 + (1 + 1) = (1 + 1) + 1 = 2 + 1 = 3.
+Qed.
+</code></pre>
+<p>This text is written in an austere English are
+naturally understand as follows:</p>
+<ul>
+<li>The first <code>Signature</code> section introduces the phrase <em>natural number</em> into
+the language; the <code>[synonym ...]</code> command allows to use &quot;natural number&quot;
+or its plural &quot;natural numbers&quot; according to English grammar.</li>
+<li>The subsequent <code>Signature</code> commands introduce the symbols 0, 1, and +.</li>
+<li>The <code>Definition</code> section introduces the symbols 2 and 3 with defining equalities.</li>
+<li>Of the arithmetic axioms, only the <code>Axiom</code> of associativity is postulated.</li>
+<li><code>Theorem</code> states the conjecture.</li>
+<li>This is proved by a chain of equations enclosed by
+<code>Proof.</code> and <code>Qed</code>.</li>
+</ul>
+<p>At the same time the text can be checked for correctness by the programm
+Naproche, which is intended to imitate the human reading of the text:</p>
+<ul>
+<li>Copy the text by pressing the copy symbol in the upper corner.</li>
+<li>Direct your browser to the the
+<a href="https://naproche.github.io/#/" target="_blank">Naproche web interface</a>.</li>
+</ul>
+<p><img src="webinterface.png" alt="Hallo" /></p>
+<ul>
+<li>Paste the text in the editor buffer of the interface and press the
+<code>Check</code> button.</li>
+<li>The output buffer will display information about the parsing
+and verification of the text and conclude with some statistics.</li>
+</ul>
+<p>One can readily edit the input in the interface and observe the various
+reactions of Naproche. Erasing some of the <code>Signature</code> commands will
+make the parser fail as it will encounter unknown words or symbols (unfortunately
+the Naproche error messages are rather cryptic).
+The text will check even if the proof of the theorem is omitted since the
+background provers of Naproche are strong enough to find a proof themselves.</p>
+<a class="header" href="print.html#exercises" id="exercises"><h3>Exercises</h3></a>
+<ol>
+<li>Define the numbers \(4\) and \(5\). Prove that \(2+2=4\) and similar identities.</li>
+<li>What happens if you try to prove that \(2+2=5\)?</li>
+<li>Can you prove that \(1 \neq 2\)? (In ForThel, <code>!=</code> stands for \(\neq\).)</li>
+</ol>
+<a class="header" href="print.html#mathematical-structures" id="mathematical-structures"><h1>Mathematical Structures</h1></a>
+<p>Mathematics studies structures which consist of elements of
+certain kinds and for which specific operations and relations
+are defined. To work with structures requires
+appropriate languages. In the previous section we have
+introduced a language for the natural numbers with
+distinguished elements 0 and 1 and the operation +.
+This was achieved by a couple of <code>Signature</code> commands:</p>
+<pre><code class="language-lean"># [synonym number/numbers]
+Signature. A natural number is a mathematical object.
+Signature. 0 is a natural number.
+Signature. 1 is a natural number.
+Signature. Assume that k,l are natural numbers.
+k + l is a natural number.
+</code></pre>
+<p><em>The &quot;eye&quot; symbol in the upper corner indicates that the code contains
+some hidden lines which however will be present when copying
+the code. The lines can be &quot;unhidden&quot; by clicking the &quot;eye&quot;. The hidden
+lines are required to run the code.</em></p>
+<p>Starting from these lines we intend to study the <em>notion</em>
+of natural number. Notions are fundamental in Naproche. They
+resemble <em>types</em> in computer science or type theory but they are
+more flexible, similar to general notions in natural language.
+To emphasize the <em>notion</em> of natural number we can write:</p>
+<pre><code class="language-lean"># [synonym number/numbers]
+Signature. A natural number is a notion.
+Signature. 0 is a natural number.
+Signature. 1 is a natural number.
+Signature. Assume that k,l are natural numbers.
+k + l is a natural number.
+</code></pre>
+<p>Let us denote the collection of natural numbers by
+\(\mathbb{N}\). The last <code>Signature</code> command introduces
+the usual _ + _ pattern to denote the operation of
+<em>addition</em>. The pattern has two slots for the insertion of arguments.
+To indentify these slots, we first have to locally introduce
+variables k,l
+for natural numbers. The parser recognizes the variables and
+interprets k + l as a pattern for a binary operation.
+Similarly we can introduce the <em>multiplication</em> of natural
+numbers:</p>
+<pre><code>Signature. Assume that k,l are natural numbers.
+k * l is a natural number.
+</code></pre>
+<p>This gives a standard language for the structure
+\( (\mathbb{N}, 0, 1, +, *) \).</p>
+<p>Strictly speaking one has to distinguish between the symbols
+<code>0,1,+,*</code> and their interpretations \( 0, 1, +, * \).
+The point of mathematical language is that working with
+&quot;real&quot; mathematical objects can be simulated by
+working with the notation. So it is usually safe to
+blur the distinction between notation and interpretation.
+(Indeed it is hard to imagine how to deal with mathematical
+objects directly, instead of &quot;talking&quot; about them.)</p>
+<p>We can now introduce languages for other structures, e.g.
+for the complex numbers \( (\mathbb{C}, 0, 1, i, +, *, {\overline z}) \),
+including the imaginary unit \( i \) and complex conjugation
+\( \overline z \):</p>
+<pre><code>[synonym number/numbers]
+Signature. A complex number is a notion.
+Signature. 0 is a complex number.
+Signature. 1 is a complex number.
+Signature. i is a complex number.
+Signature. Assume that x,y are complex numbers.
+x + y is a complex number.
+Signature. Assume that x,y are complex numbers.
+x * y is a complex number.
+Signature. Assume that z is a complex number.
+bar(z) is a complex number.
+</code></pre>
+<a class="header" href="print.html#exercises-1" id="exercises-1"><h3>Exercises</h3></a>
+<ol>
+<li>
+<p>Define a language for the real numbers which includes the
+formation of negatives \( -x \) and of differences \( x - y \).</p>
+</li>
+<li>
+<p>Define a language for the Boolean algebra of truth values
+with constants
+\( \bot \) (&quot;false&quot;) and \( \top \) (&quot;true&quot;) and
+the logical connectives
+\( \wedge \) (&quot;and&quot;), \( \vee \) (&quot;or&quot;), and \( \neg \) (&quot;not&quot;).</p>
+</li>
+<li>
+<p>Define a language for the class
+\( (\cal{G}, \times) \) of all groups with the operation
+of Cartesian product.</p>
+</li>
+<li>
+<p>What happens with the command <code>Signature. k * l is a natural number.</code> without declaring k and l to be natural numbers beforehand?</p>
+</li>
+</ol>
+<a class="header" href="print.html#multiple-notions" id="multiple-notions"><h2>Multiple Notions</h2></a>
+<p>In mathematics one is often concerned with several notions
+at the same time and their relations to each other:
+a vector will have a real
+number as its length, the order of a group element
+may be a natural number (or infinity), etc.
+A priori, Naproche is ignorant about the relations between
+various notions. Indeed we can only draw conclusions about
+relations between notions from explicitly stated
+assumptions. The example</p>
+<pre><code>Signature. A natural number is a notion.
+Signature. A real number is a notion.
+
+Lemma. Every natural number is a real number.
+</code></pre>
+<p>is a well-formed text in natural language and in ForTheL,
+but its verification by Naproche <em>fails</em> because
+&quot;natural number&quot; and &quot;real number&quot; are at the moment empty
+phrases devoid of their standard semantics. Note that in most
+computer languages
+natural numbers (or integers) and real numbers form disjoint <em>types</em>
+with an explicit operation for &quot;casting&quot; integers into real numbers.</p>
+<p>But also the opposite Lemma fails:</p>
+<pre><code>Signature. A natural number is a notion.
+Signature. A real number is a notion.
+
+Lemma. There is a natural number that is not a real number.
+</code></pre>
+<p>If, in line with common mathematical practice, we want natural
+numbers to be real numbers as well, this can be postulated
+explicitly as an axiom:</p>
+<pre><code>Signature. A natural number is a notion.
+Signature. A real number is a notion.
+
+Axiom. Every natural number is a real number.
+</code></pre>
+<p>The same effect can be achieved by directly introducing
+natural numbers as a &quot;subnotion&quot; of the real numbers:</p>
+<pre><code>Signature. A real number is a notion.
+Signature. A natural number is a real number.
+</code></pre>
+<a class="header" href="print.html#verbose-function-notations" id="verbose-function-notations"><h1>Verbose Function Notations</h1></a>
+<p>Above we have introduced the <em>symbolic</em> pattern
+<code>_ + _</code> as a notation for addition. In the <em>natural language</em>
+of mathematics we also want some verbose form. This is possible
+by declaring:</p>
+<pre><code class="language-lean"># [synonym number/numbers]
+Signature. A natural number is a notion.
+Signature. Assume that k,l are natural numbers.
+The sum of k and l is a natural number.
+</code></pre>
+<p>The associative law then takes the (somewhat unreadable)
+verbose form:</p>
+<pre><code class="language-lean"># [synonym number/numbers]
+# Signature. A natural number is a notion.
+Signature. Assume that k,l are natural numbers.
+The sum of k and l is a natural number.
+Axiom. Let k,l,m be natural numbers.
+The sum of the sum of k and l and m is equal to
+the sum of k and the sum of l and m.
+</code></pre>
+<p>To be able to use symbolic and verbose forms alternatively one can
+use a synonym construction like:</p>
+<pre><code class="language-lean"># [synonym number/numbers]
+Signature. A natural number is a notion.
+Signature. Assume that k,l are natural numbers.
+The sum of k and l is a natural number.
+Let k + l stand for the sum of k and l.
+</code></pre>
+<p>Or the other way round:</p>
+<pre><code class="language-lean"># [synonym number/numbers]
+Signature. A natural number is a notion.
+Signature. Assume that k,l are natural numbers.
+k + l is a natural number.
+Let the sum of k and l stand for k + l.
+</code></pre>
+<p>Either way we can formalize associativity as</p>
+<pre><code class="language-lean"># [synonym number/numbers]
+# Signature. A natural number is a notion.
+# Signature. Assume that k,l are natural numbers.
+# The sum of k and l is a natural number.
+# Let k + l stand for the sum of k and l.
+Axiom. Let k,l,m be natural numbers.
+Then (k + l) + m = k + (l + m).
+</code></pre>
+<p>Constants also allow verbose forms, like:</p>
+<pre><code class="language-lean"># [synonym number/numbers]
+# Signature. A natural number is a notion.
+# Signature. Assume that k,l are natural numbers.
+# The sum of k and l is a natural number.
+# Let k + l stand for the sum of k and l.
+# Axiom. Let k,l,m be natural numbers.
+# Then (k + l) + m = k + (l + m).
+Signature. 0 is a natural number.
+Signature. One is a natural number.
+Signature. The smallest natural number is a natural number.
+</code></pre>
+<p>&quot;0&quot;, &quot;One&quot;, and &quot;the smallest natural number&quot; are now available
+as symbols without any specific relations between them.
+So a property like &quot;0 is the smallest natural number&quot;
+is not decidable by Naproche without further axioms.</p>
+<a class="header" href="print.html#exercises-2" id="exercises-2"><h3>Exercises</h3></a>
+<ol start="5">
+<li>Check the undecidability stated in the last sentence.</li>
+<li>Formalize the following snippet from the axioms in
+David Hilbert's <em>Foundations of Geometry</em>:
+<br />
+Let us consider three distinct systems of things. The things composing the first system,
+we will call <em>points</em> and designate them by the letters A, B, C,. . . ; those of the second,
+we will call <em>straight lines</em> and designate them by the letters a, b, c,. . . ; and those of the
+third system, we will call <em>planes</em> and designate them by the Greek letters α, β, γ, . . .</li>
+</ol>
+<a class="header" href="print.html#example" id="example"><h2>Example</h2></a>
+<p>Let us introduce a language for a vector
+space over a scalar field:</p>
+<pre><code>[synonym scalar/scalars]
+Signature. A scalar is a notion.
+Signature. 0 is a scalar.
+Signature. 1 is a scalar.
+Signature. Assume that x,y are scalars.
+x + y is a scalar.
+Signature. Assume that x,y are scalars.
+x * y is a scalar.
+
+[synonym vector/vectors]
+Signature. A vector is a notion.
+Signature. 00 is a vector.
+Signature. Assume that u,v are vectors.
+u + v is a vector.
+Signature. Assume that x is a scalar and u is a vector.
+x * u is a vector.
+</code></pre>
+<p>These commands are accepted by Naproche - so far. Unfortunately,
+when one then want to prove a lemma like</p>
+<pre><code>Lemma. 00 + 00 = 00.
+</code></pre>
+<p>the parser throws an ambiguity error because it cannot discern
+whether the + means scalar sum or vector sum. Therefore
+one needs to introduce distinct symbols for the sums
+and also for the products:</p>
+<pre><code>[synonym scalar/scalars]
+Signature. A scalar is a notion.
+Signature. 0 is a scalar.
+Signature. 1 is a scalar.
+Signature. Assume that x,y are scalars.
+x + y is a scalar.
+Signature. Assume that x,y are scalars.
+x * y is a scalar.
+
+[synonym vector/vectors]
+Signature. A vector is a notion.
+Signature. 00 is a vector.
+Signature. Assume that u,v are vectors.
+u ++ v is a vector.
+Signature. Assume that x is a scalar and u is a vector.
+x ** u is a vector.
+
+Lemma. 00 ++ 00 = 00.
+</code></pre>
+<p>This text is parsed successfully, but the verification of the
+Lemma fails, since so far there are no axioms for ++.</p>
+<a class="header" href="print.html#natural-language-aspects" id="natural-language-aspects"><h1>Natural Language Aspects</h1></a>
+<p>Natural language describes &quot;the world&quot;. Similarly the language
+of mathematics describes a &quot;mathematical universe&quot;, inhabited
+by &quot;mathematical objects&quot; which have certain properties and
+are in certain relations to each other.
+Certain categories of words
+like nouns, verbs, or adjectives are used for different kinds
+of entities
+and properties in &quot;the world&quot; as well as in the &quot;mathematical universe&quot;.</p>
+<a class="header" href="print.html#nouns-and-notions" id="nouns-and-notions"><h2>Nouns and Notions</h2></a>
+<p>In natural language</p>
+<ul>
+<li><em>nouns</em></li>
+</ul>
+<p>are used as names for specific objects or sets of objects.
+One distinguishes between <em>proper nouns</em>, which represent unique
+entities, and <em>common nouns</em> which describe a class of entities.
+<em>Venus</em> is a proper noun naming a specific planet, whereas
+<em>planet</em> is a common noun.
+In mathematics, corresponding examples would be &quot;Zero&quot; and
+&quot;natural number&quot;.</p>
+<pre><code>Signature. A planet is a notion.
+Signature. Venus is a star.
+</code></pre>
+<p>or, in mathematics:</p>
+<pre><code>Signature. An integer is a notion.
+Signature. Zero is an integer.
+</code></pre>
+<p>A characteristic feature of mathematical language is the use
+of symbolic notation to make statements concise and
+exact. One can use symbols like \(e, \pi, \mathbb{N}\) as
+identifiers for certain mathematical &quot;mathematical nouns&quot;.</p>
+<p>In the ASCII format of ForTheL we can introduce symbolic
+constants by:</p>
+<pre><code>Signature. A real number is a notion.
+Signature. e is a real number.
+Signature. pi is a real number.
+Signature. NAT is a notion.
+</code></pre>
+<p>It is also possible to use ASCII symbols like:</p>
+<pre><code>Signature. A binary relation is a notion.
+Signature. &lt; is a binary relation.
+Signature. &lt;&lt; is a binary relation.
+Signature. | is a binary relation.
+</code></pre>
+<p>Since backslashes <code>\</code> and braces <code>{ }</code> are acceptable
+in identifiers, we can
+also use LaTeX like names:</p>
+<pre><code>Signature. A real is a notion.
+Signature. \pi is a real.
+Signature. \mathbb{N} is a real.
+</code></pre>
+<p>Indeed we shall later encounter a LaTeX dialect of ForTheL.</p>
+<a class="header" href="print.html#exercise" id="exercise"><h3>Exercise</h3></a>
+<ol>
+<li>Explore which which kinds of identifiers are accepted by Naproche.
+Note that there are some ForTheL keywords and inbuilt identifiers
+that should not be used as user-defined identifiers.</li>
+</ol>
+<a class="header" href="print.html#noun-patterns" id="noun-patterns"><h3>Noun Patterns</h3></a>
+<p>Mathematics also uses fixed combinations of several words as
+identifiers: &quot;complex number&quot;, &quot;topological space&quot;, &quot;neutral
+element&quot;, ... that we call <em>noun patterns</em>.
+In natural language <em>noun phrases</em>
+can be interpreted by analysing how they are built from
+nouns, adjectives and other words.
+In mathematics, however, noun patterns are usally interpreted as
+indivisible basic
+entities: the technical meaning of
+&quot;complex number&quot; cannot be
+reconstructed from separate meanings
+of &quot;complex&quot; and &quot;number&quot;.</p>
+<p>With noun patterns one uses <em>articles</em> &quot;a&quot; or &quot;the&quot; to
+distinguish &quot;proper&quot; and &quot;common&quot; usage.
+&quot;<em>A</em> complex number&quot; denotes the &quot;common&quot; class of complex numbers
+of which &quot;<em>the</em> imaginary unit&quot; is a specific element.</p>
+<pre><code>Signature. A complex number is a notion.
+Signature. The imaginary unit is a complex number.
+</code></pre>
+<a class="header" href="print.html#naproche-natural-language-processing" id="naproche-natural-language-processing"><h2>Naproche Natural Language Processing</h2></a>
+<p>Naproche translates the ForTheL input language into a completely
+formal internal representation which is adequate for further
+processing and proof-checking. In the web interface one can view
+(a pretty-printed version of) the translation by pressing
+the <em>Translate</em> button. The following definition of a language
+for addition on \(\mathbb{N}\)</p>
+<pre><code>[synonym number/numbers]
+Signature. A natural number is a notion.
+Signature. 0 is a natural number.
+Signature. 1 is a natural number.
+Signature. Assume that k,l are natural numbers.
+k + l is a natural number.
+</code></pre>
+<p>translates to</p>
+<pre><code>[Translation] hypothesis.
+  assume forall v0 ((HeadTerm :: aNaturalNumber(v0)) implies truth.
+[Translation] hypothesis.
+  assume forall v0 ((HeadTerm :: v0 = 0) implies aNaturalNumber(v0)).
+[Translation] hypothesis.
+  assume forall v0 ((HeadTerm :: v0 = 1) implies aNaturalNumber(v0)).
+[Translation] hypothesis.
+  assume (aNaturalNumber(k) and aNaturalNumber(l)).
+  assume forall v0 ((HeadTerm :: v0 = k+l) implies aNaturalNumber(v0)).
+</code></pre>
+<p>We can see that the phrase &quot;natural number&quot;
+is internally represented by a unary predicate <code>aNaturalNumber( )</code> and
+that the symbols 0,1, and + have also been accepted. The translations
+expresses <em>ontological</em> properties of the newly introduced symbols, e.g.,
+that the result of applying + to two natural numbers k,l is again
+a natural number. These properties are marked as assumptions (<code>assume</code>)
+for future use.</p>
+<p>A Naproche user is supposed to write a ForTheL text which
+naturally expresses
+the intended mathematical content and which at the same time is
+faithfully translated into Naproche's internal representation.
+Sometimes our natural language intuitions may flexibly
+accept formulations which are not translated adequately by
+the schematic procedures of Naproche. In case of doubt it is therefore
+advisable to check the formal translations. We shall later
+give more information on the internal logic format.</p>
+<a class="header" href="print.html#naproche-parsing" id="naproche-parsing"><h3>Naproche Parsing</h3></a>
+<p>Naproche tries to algorithically model a human reader
+who reads text sequentially from left to right. The text is
+processed as a list of tokens, i.e., a <em>tokenizer</em> separates it
+into words and symbols, ignoring whitespace.
+The text</p>
+<pre><code>Signature. A natural number is a notion.
+</code></pre>
+<p>is separated into the token list</p>
+<pre><code>[&quot;signature&quot;, &quot;.&quot;, &quot;a&quot;, &quot;natural&quot;, &quot;number&quot;, &quot;is&quot;, &quot;a&quot;, &quot;notion&quot;, &quot;.&quot;]
+</code></pre>
+<p>The parser, starting from its initial state, reads &quot;signature&quot;, which
+lets it expect a fullstop &quot;.&quot; and a subsequent signature specification.
+Such specifications have to be in certain prescribed shapes or
+<em>patterns</em> like</p>
+<pre><code>[&quot;a&quot;, _ , &quot;is&quot;, &quot;a&quot;, _ , &quot;.&quot;]
+</code></pre>
+<p>or</p>
+<pre><code>[ _ , &quot;is&quot;, &quot;a&quot;, _ , &quot;.&quot;]
+</code></pre>
+<p>The underscores <code>_</code> indicate holes where other patterns of certain
+kinds can be inserted;
+in  our example, this is the pattern
+<code>[&quot;natural&quot;, &quot;number&quot;]</code> for a new notion and the
+keyword pattern <code>[&quot;notion&quot;]</code>.
+After successfully parsing the sentence the unary predicate symbol
+<code>aNaturalNumber( )</code> is generated and an assumption</p>
+<pre><code>assume forall v0 ((HeadTerm :: aNaturalNumber(v0)) implies truth.
+</code></pre>
+<p>is recorded for further use (note that in this simple case the
+statement is logically trivial since a formula <code>... implies truth</code>
+is always true).</p>
+<a class="header" href="print.html#formal-grammar" id="formal-grammar"><h3>Formal Grammar</h3></a>
+<p>We see that Naproche treats ForTheL as a <em>pattern-based</em> language
+whose sentence are built by iteratively inserting patterns
+into patterns. The allowed patterns are specified in the <em>grammar</em>
+of ForTheL. An excerpt of the ForTheL grammar which pertains
+to our example
+is given by the following rules in Backus-Naur form (BNF):</p>
+<pre><code>text → { toplevel | ... }
+toplevel → axiom | definition | signature | proposition
+signature → sigHeader { assume } sigAffirm
+sigHeader → Signature [ label ] .
+sigAffirm → sigStatement .
+sigStatement → notionSig | ...
+notionSig → notionHead is [ a | an ] ( classNoun | notion )
+notionHead → [ a | an ] primClassNoun
+           |notionPattern
+notionPattern → (a | an) pattern
+pattern → token { token } [ variable { token { token } variable } ]
+...
+</code></pre>
+<p>The grammar shows that there are some alternatives for the
+formulation of our <code>Signature</code> statement.
+We recommend to experiment with Naproche and use the
+translation option.</p>
+<a class="header" href="print.html#exercises-3" id="exercises-3"><h2>Exercises</h2></a>
+<ol>
+<li>
+<p>Try to find more grammatical alternatives to the above
+<code>Signature</code> statements and compare their logic translations.</p>
+</li>
+<li>
+<p>Make experiments to find out the range of possible phrases
+that can be used for notions. Can one introduce the notion
+of a p-group, a group of order p, or an mxn-matrix?
+Can &quot;a&quot; or &quot;A&quot; be used as identifiers for constants? Explain!</p>
+</li>
+<li>
+<p>What is wrong with the Lemma:<br>
+<code>Lemma. Every natural number is a number.</code></p>
+</li>
+<li>
+<p>Toplevel commands can be labeled like <br>
+<code>Axiom Associativity. Let x,y,z be natural numbers. Then (x + y) +z = x + (y + z).</code> <br>
+The label &quot;Associativity&quot; serves as a comment, and it can later
+be used to invoke specific premisses: &quot;(by Associativity)&quot;.
+Find out, which kinds of labels
+are accepted by Naproche.</p>
+</li>
+</ol>
+<a class="header" href="print.html#further-aspects" id="further-aspects"><h2>Further Aspects</h2></a>
+<p>Some grammatical phrases may have different meanings in similar
+but different environments. &quot;is a&quot; is part of <code>Signature</code> commands,
+but it may also be interpreted as equality, e.g.,
+in <code>Definition</code> commands. The following text is checked correct:</p>
+<pre><code>[synonym number/numbers]
+Signature. A natural number is a notion.
+
+Signature. 1 is a natural number.
+
+Definition. 2 is a natural number.
+
+Lemma. 1 = 2.
+</code></pre>
+<p>The reason lies with the <code>Definition</code>: it translates to
+the equivalence</p>
+<pre><code>assume forall v0 ((HeadTerm :: v0 = 2) iff aNaturalNumber(v0)).
+</code></pre>
+<p>which identifies all natural numbers with 2. Admittedly, the
+phrasing of the definition does not sound quite right, but the
+best way to check is by inspecting the translation.</p>
+<p>In natural language one often uses alternative phrases
+for some notion to achieve grammatical correctness or some
+flexibility of expression. One can identify tokens by <code>synonym</code> commands.
+After</p>
+<pre><code>[synonym number/numbers]
+</code></pre>
+<p>the tokens &quot;number&quot; and &quot;numbers&quot; are the same with respect to
+tokenizing and parsing. So we can (and should!) use correct
+grammatical (singular/plural) forms in the formalization.</p>
+<p>One can also introduce alternative patterns for existing
+patterns by <code>Let ... stand for ... .</code> or
+<code>Let ... denote ... .</code> commands.</p>
+<pre><code>[synonym number/numbers]
+Signature. A natural number is a notion.
+Let an integer stand for a natural number.
+
+Signature. 1 is an integer.
+
+Let ONE stand for 1.
+
+Lemma. ONE = 1.
+</code></pre>
+<p>Again, experimentation and translation of this text shows
+that its grammatical
+correctness and its semantics depend subtly on single words, in
+particular on the use of the inconspicuous but very ambiguous
+token &quot;a&quot;.</p>
+<a class="header" href="print.html#jabberwocky" id="jabberwocky"><h2>Jabberwocky</h2></a>
+<p>Note that Naproche allows
+completely nonsensical identifiers since Naproche does not have
+an English vocabulary and mathematical intuitions. Therefore
+it is possible to postulate, following a quote ascribed to Hilbert</p>
+<p><em>Man muß jederzeit an Stelle
+von 'Punkte, Geraden, Ebenen',
+'Tische, Stühle, Bierseidel' sagen
+können</em>:</p>
+<pre><code>Signature. A Bierseidel is a notion. 
+</code></pre>
+<p>Since ForTheL texts are intended for human readability and understanding,
+choosing fitting identifiers is a question of good style and writing.</p>
+<a class="header" href="print.html#terms" id="terms"><h1>Terms</h1></a>
+<p>An arithmetic term like \(b * x^2 + c * x +d\) is composed iteratively
+from <em>constants</em> \(b,c,d\), <em>variables</em> \(x \), and
+<em>operations</em>
+\(+\), \(*\), and \({}^2\).
+In ForTheL, all language elements are represented by patterns,
+regardless whether a term is symbolic or &quot;verbose&quot;. The binary
+operation \(+\) is, e.g., treated as the
+pattern <code>[ _ , &quot;+&quot;, _ ]</code> by the parser. Let us now consider
+various natural patterns that can be used to build terms.</p>
+<a class="header" href="print.html#variables" id="variables"><h2>Variables</h2></a>
+<p>Customarily, mathematical variables are single letters from the
+latin and other alphabets, and these can moreover be decorated in
+various ways, e.g. by numerical subscripts or primes.</p>
+<p>In Naproche the various grammatical categories are ultimately defined
+by the Naproche parser. The definition of the variable parser <code>var</code>
+models the various possibilities for variables in ASCII:</p>
+<pre><code>var :: FTL PosVar
+var = do
+  pos &lt;- getPos
+  v &lt;- satisfy (\s -&gt; Text.all isAlphaNum s &amp;&amp; isAlpha (Text.head s))
+  primes &lt;- Text.concat . fmap (const &quot;'&quot;) &lt;$&gt; many (symbol &quot;'&quot;)
+  let v' = v &lt;&gt; primes
+  return (PosVar (VarConstant v') pos)
+</code></pre>
+<p>This implies that a variable starts with an alphabetic symbol in
+{a,...,z,A,...,Z}, followed by arbitrarily many alphanumeric symbols,
+and finally an arbitrary number of primes <code>'</code>. So <code>x,y,z</code>, and <code>alpha, alpha1, alpha123</code>, and <code>alpha', alpha''</code> are examples of ForTheL variables.</p>
+<p>(Typed) variables can be introduced into a ForTheL text globally by
+a pre-typing:</p>
+<pre><code>Let alpha1 stand for natural numbers.
+</code></pre>
+<p>or locally by an assumption:</p>
+<pre><code>Assume that alpha1 is a natural number. 
+</code></pre>
+<a class="header" href="print.html#constants-and-operations" id="constants-and-operations"><h2>Constants and Operations</h2></a>
+<p>Constants can be considered as operations or functions without variable
+arguments which then take a constant &quot;value&quot;. So wee can treat
+constants and operations together. Mathematical operations
+are often denoted <em>symbolically</em>, like
+\( x + y \), but there are also <em>verbose</em> forms as in &quot;sum of \(x\) and
+\(y\)&quot;.</p>
+<p>In ForTheL, both cases can be represented as a configuration
+with holes for variables: \( \_ + \_ \),
+or &quot;the sum of \( \_ \) and \( \_ \)&quot;.
+As in the previous chapter, these can be viewed as
+a <em>pattern</em>: <code>[&quot;sum&quot;, &quot;of&quot;, _ , &quot;and&quot;, _ ]</code> or a
+<em>symbolic pattern</em>: <code>[ _ , &quot;+&quot;, _ ]</code>.</p>
+<p>In the ForTheL grammar these grammatical categories are described by
+the rules:</p>
+<pre><code>pattern → token { token } [ variable { token { token } variable } ]
+
+token → small { small }
+
+symbPattern → [ variable ] symbToken { variable symbToken } [ variable ]
+| word ( variable { , variable } )
+| word [ variable ]
+
+symbToken → symbol { symbol }
+
+word → alphanum { alphanum }
+</code></pre>
+<a class="header" href="print.html#constants" id="constants"><h3>Constants</h3></a>
+<p>Without variables, the above grammar rules reduce to</p>
+<pre><code>pattern → token { token }
+
+token → small { small }
+
+symbPattern → symbToken
+| word
+
+symbToken → symbol { symbol }
+
+word → alphanum { alphanum }
+</code></pre>
+<p>These rules produce a variety of names for constants like</p>
+<ul>
+<li>a,b,c, ..., x,y,z, A,B,C, alpha, beta, ..., Aleph, ...</li>
+<li>a1, a2, ..., A11, A12, A21, ...</li>
+<li>0, 1, ..., 456, ...</li>
+<li>Zero, One, ...</li>
+<li>&quot;empty set&quot;, &quot;infinity&quot;, &quot;Euler constant&quot;, ...</li>
+</ul>
+<p>In mathematics, there are many universal constants like all the
+natural numbers, the real numbers \(e\) and \( \pi \), the
+imaginary unit \(i\), .... These can be introduced in Naproche,
+except that we have to rewrite them in ASCII form like <code>pi</code> or
+<code>PI</code> for \( \pi \).</p>
+<a class="header" href="print.html#operations" id="operations"><h3>Operations</h3></a>
+<p>The above examples \( x + y \) and the &quot;sum of \(x\) and
+\(y\)&quot; are operations in the sense of the ForTheL grammar. They
+can be introduced into the language by commands like:</p>
+<pre><code>Signature. Assume x, y are numbers. x + y is a number.
+by
+Signature. Assume x, y are numbers. The sum of x and y is a
+number.
+</code></pre>
+<p>It is important, that the variables have been declared before the new
+pattern is introduced, otherwise x and y would not be seen as
+holes for arguments, but as ordinary tokens of the pattern. The <code>sum of x and y</code> would then be registered as a constant! One can check this in
+Naproche using the text</p>
+<pre><code>Signature. The sum of x and y is a number.
+
+Axiom. The sum of x and y is equal to the sum of y and x.
+</code></pre>
+<p>Instead of the local declaration of the variables by an assumption,
+one could also use a global pretyping:</p>
+<pre><code>Let x,y denote numbers.
+
+Signature. The sum of x and y is a number.
+
+Axiom. The sum of x and y is equal to the sum of y and x.
+</code></pre>
+<p>Constants and operations can have elaborate verbose names
+which can be chosen in line with mathematical usage. E.g.,</p>
+<pre><code>Signature. The circumference of the unit circle is a number.
+
+Signature. Assume that x is a number. One half of x is a number.
+
+Definition. Pi is one half of the circumference of the unit circle.
+</code></pre>
+<p>THE Integral of f from a to b.</p>
+<a class="header" href="print.html#exercises-4" id="exercises-4"><h2>Exercises</h2></a>
+<ol start="0">
+<li>Preceding things in Naproche checken.</li>
+<li>Term for binomial formula
+Terms with brackets!! Or without brackets (verbose in analogy to
+polish notation?)</li>
+<li>min max etc geschachtelt</li>
+<li>Ableitung?</li>
+</ol>
+<a class="header" href="print.html#numbers" id="numbers"><h1>Numbers</h1></a>
+<p>Numbers are the most important mathematical objects. They
+comprise the natural numbers, real numbers, complex numbers.
+In this chapter we shall introduce general numbers
+which will be equipped with the usual arithmetical
+operations and axioms.</p>
+<pre><code>[synonym number/numbers]
+Signature. A number is a mathematical object.
+Let x,y,z denote numbers.
+
+Signature. x + y is a number. Let the sum of x and y denote x + y.
+
+Signature. x * y is a number. Let the product of x and y denote x * y.
+
+Signature. - x is a number. Let the negative of x denote - x.
+
+Signature. 0 is a number.
+
+Signature. 1 is a number such that 1 != 0.
+
+Signature. Assume that x != 0. 1 / x is a number.
+</code></pre>
+<p>Note that we can &quot;pre-type&quot; variables by a command of the form</p>
+<pre><code>Let x,y,z denote numbers.
+</code></pre>
+<p>This has the same effect as putting something like
+<code>Let x,y,z be numbers.</code> in the beginning of subsequent
+commands.</p>
+<p>Real numbers are numbers, and they are closed under the
+arithmetical operations. This makes the structure of the real numbers a
+substructure of the structure of all numbers.
+The closure properties are expressed by axioms.</p>
+<pre><code class="language-lean"># [synonym number/numbers]
+# Signature. A number is a mathematical object.
+# Let x,y,z denote numbers.
+# 
+# Signature. x + y is a number. Let the sum of x and y denote x + y.
+# 
+# Signature. x * y is a number. Let the product of x and y denote x * y.
+# 
+# Signature. - x is a number. Let the negative of x denote - x.
+# 
+# Signature. 0 is a number.
+# 
+# Signature. 1 is a number such that 1 != 0.
+# 
+# Signature. Assume that x != 0. 1 / x is a number.
+# [synonym real/reals]
+Signature. A real number is a number.
+Let a real stand for a real number. 
+Let u,v,w denote reals.
+
+Axiom. u + v is a real.
+
+Axiom. u * v is a real.
+
+Axiom. - u is a real.
+
+Axiom. 0,1 are reals.
+
+Axiom. Assume that u != 0. Then 1 / u is a real.
+</code></pre>
+<p>The standard natural numbers are the numbers
+\( 0, 1, 2 = 1 + 1, 3 = 2 + 1, \dots \) . These are all real numbers, and
+so we postulate that the natural numbers are real numbers.
+The natural numbers do not satisfy certain closure properties, since
+\( -1 \) or \( 1 / 2 \) are not natural numbers.</p>
+<pre><code class="language-lean"># [synonym number/numbers]
+# Signature. A number is a mathematical object.
+# Let x,y,z denote numbers.
+# 
+# Signature. x + y is a number. Let the sum of x and y denote x + y.
+# 
+# Signature. x * y is a number. Let the product of x and y denote x * y.
+# 
+# Signature. - x is a number. Let the negative of x denote - x.
+# 
+# Signature. 0 is a number.
+# 
+# Signature. 1 is a number such that 1 != 0.
+# 
+# Signature. Assume that x != 0. 1 / x is a number.
+# 
+# [synonym real/reals]
+# Signature. A real number is a number.
+# Let a real stand for a real number. 
+# Let u,v,w denote reals.
+# 
+# Axiom. u + v is a real.
+# 
+# Axiom. u * v is a real.
+# 
+# Axiom. - u is a real.
+# 
+# Axiom. 0,1 are reals.
+# 
+# Axiom. Assume that u != 0. Then 1 / u is a real.
+# 
+Signature. A natural number is a real.
+Let l,m,n denote natural numbers.
+
+Axiom. m + n is a natural number.
+
+Axiom. m * n is a natural number.
+
+Axiom. 0,1 are natural numbers.
+</code></pre>
+<p>Note that the obviously equivalent <code>Signature</code> command</p>
+<pre><code>Signature. A natural number is a real number.
+</code></pre>
+<p>leads to ambiguous parsing since the initial segment
+&quot;A natural number is a real&quot; is also acceptable
+due to the command <code>Let a real stand for a real number.</code>
+(Try this for yourself.) Perhaps that parser command is
+not a good idea.</p>
+<p>Obviously every natural number is a number in the general sense.
+This can also be checked by Naproche:</p>
+<pre><code class="language-lean"># [synonym number/numbers]
+# Signature. A number is a mathematical object.
+# Let x,y,z denote numbers.
+# 
+# Signature. x + y is a number. Let the sum of x and y denote x + y.
+# 
+# Signature. x * y is a number. Let the product of x and y denote x * y.
+# 
+# Signature. - x is a number. Let the negative of x denote - x.
+# 
+# Signature. 0 is a number.
+# 
+# Signature. 1 is a number such that 1 != 0.
+# 
+# Signature. Assume that x != 0. 1 / x is a number.
+# 
+# [synonym real/reals]
+# Signature. A real number is a number.
+# Let a real stand for a real number. 
+# Let u,v,w denote reals.
+# 
+# Axiom. u + v is a real.
+# 
+# Axiom. u * v is a real.
+# 
+# Axiom. - u is a real.
+# 
+# Axiom. 0,1 are reals.
+# 
+# Axiom. Assume that u != 0. Then 1 / u is a real.
+# 
+# Signature. A natural number is a real.
+# Let l,m,n denote natural numbers.
+# 
+# Axiom. m + n is a natural number.
+# 
+# Axiom. m * n is a natural number.
+# 
+# Axiom. 0,1 are natural numbers.
+# 
+Lemma. Every natural number is a number.
+</code></pre>
+<a class="header" href="print.html#proving-identities" id="proving-identities"><h1>Proving Identities</h1></a>
+<p>By symbolic calculations
+one can prove familiar binomial formulas like:</p>
+<p>Theorem. \((x+y)*(x-y)=x^2 - y^2 \).</p>
+<p>Equations are <em>basic mathematical statements</em> of the form
+\( r = s \) where \( r \) and \( s \) are terms as defined
+before. A canonical proof for \( r = s \) consists of a
+series \(t_0 = t_1\), \(t_1 = t_2\), ..., \(t_{n-1} = t_{n}\)
+of equations, which are &quot;obviously&quot; true and where \(r = t_0 \)
+and \(s = t_n \). Often, such equations are pulled together into
+one statement, a <em>chain of equations</em>:</p>
+<p>\( r = t_1 = t_2 = t_{n-1} = s\).</p>
+<p>The binomial formula can thus be proved by</p>
+<p>\((x+y)*(x-y) =
+x^2 - x*y + y*x -y^2 =
+x^2 - 0 - y^2 =
+x^2 - y^2 \).</p>
+<p>The equations in this chain are justified by factoring out
+\((x+y)*(x-y) \) and by simplifying \( - x*y + y*x \)
+to \( 0 \).</p>
+<p>We can now record our result more systematically in the usual
+<em>Theorem - Proof - Qed</em> style:</p>
+<p>Theorem. \((x+y)*(x-y)=x^2 - y^2 \).</p>
+<p>Proof.
+\((x+y)*(x-y) =
+x^2 - x*y + y*x -y^2 =
+x^2 - 0 - y^2 =
+x^2 - y^2 \).
+Qed.</p>
+<p>This proof is acceptable because the intended reader
+knows and trusts the algebraic manipulations.
+In general, whether proofs are acceptable to a human reader depends on
+many factors, and especially on the expertise of the reader.
+Moreover, proofs are written in a certain context, so that
+the acceptability of proofs is also dependent on facts
+established earlier in a text or in a lecture course.</p>
+<a class="header" href="print.html#basic-algebraic-properties" id="basic-algebraic-properties"><h2>Basic Algebraic Properties</h2></a>
+<p>The algebraic manipulations used above can be reduced to
+simple properties of operations on numbers. Factoring out
+the product \((x+y)*(x-y) \) is justified by the property
+of <em>distributivity</em> \(x * (y + z) = (x * y) + (x * z)\).
+Since addition is <em>associative</em> (\( (x + y ) + z = x + (y + z) \)),
+the bracketing of multiple sums is irrelevant and can therefore
+be omitted. The <em>commutativity</em> of multiplication
+(\( x * y = y * x \)) justifies the cancellation
+\( - x*y + y*x = 0 \).</p>
+<p>Indeed by combining those basic properties one arrives at
+efficient algorithms for handling, e.g., products of polynomials.</p>
+<a class="header" href="print.html#exercises-5" id="exercises-5"><h2>Exercises</h2></a>
+<ol>
+<li>
+<p>State and prove the binomial formulas for \( (x+y)^2 \),
+\( (x-y)^2 \), and \( (x+y)^3 \) in the above style.</p>
+</li>
+<li>
+<p>Prove a polynomial identity for
+\( (1 + x + x^2 + x^3) * (1 - x) \).</p>
+</li>
+</ol>
+<a class="header" href="print.html#algebraic-axioms" id="algebraic-axioms"><h2>Algebraic Axioms</h2></a>
+<p>Modern algebra has identified a small list of
+basic properties suffices for the argumentations
+above. Such properties are then taken as as <em>axioms</em>
+which define classes of structures. We now state the such a
+system of <em>axioms</em> for <em>field</em>. This means that our notion
+of number is a field. There are several interesting fields, e.g.,
+the field of rational numbers, of real numbers, of complex numbers
+and several other fields that are studied in algebra.</p>
+<p>We state the axioms for fields in the natural language ForTheL.
+In &quot;free&quot; natural language, one would probably more elegant
+formulation, but this is just a question of style, and the linguistic
+variety of ForTheL could in principle also be extended. To make
+the following snippet self-contained it begins by
+recalling the language of numbers as introduced before.</p>
+<pre><code>[synonym number/numbers]
+Signature. A number is a mathematical object.
+Let x,y,z denote numbers.
+
+Signature. x + y is a number. Let the sum of x and y denote x + y.
+
+Signature. x * y is a number. Let the product of x and y denote x * y.
+
+Signature. - x is a number. Let the negative of x denote - x.
+
+Signature. 0 is a number.
+
+Signature. 1 is a number such that 1 != 0.
+
+Signature. Assume that x != 0. 1 / x is a number.
+
+Axiom 1. (x + y) + z = x + (y + z).
+
+Axiom 2. x + y = y + x.
+
+Axiom 3. x + 0 = x.
+
+Axiom 4. x + (-x) = 0.
+
+Axiom 5. (x * y) * z = x * (y * z).
+
+Axiom 6. x * y = y * x.
+
+Axiom 7. x * 1 = x.
+
+Axiom 8. Let x != 0. Then x * (1/x) = 1.
+
+Axiom 9. x * (y + z) = (x * y) + (x * z).
+</code></pre>
+<p>Note that subsystems of these axioms define other interesting classes
+of structures:</p>
+<ul>
+<li><em>groups</em>: Axioms 1,3,4;</li>
+<li><em>abelian groups</em>: Axioms 1,2,3,4;</li>
+<li><em>rings</em>: Axioms 1,2,3,4,5,9 plus the following symmetric version of
+Axiom 9: (x + y) * z = (x * z) + (y * z).</li>
+</ul>
+<a class="header" href="print.html#proving-equalities-in-naproche" id="proving-equalities-in-naproche"><h2>Proving Equalities in Naproche</h2></a>
+<p>Naproche strives to model the reading and checking of mathematical
+texts by humans. It reads texts successively from &quot;left to right&quot;.
+At a given stage, Naproche has accumulated facts from the preceding
+text that are now available as premises for proofs. When the system
+encounters an equation without a subsequent proof, it tries to
+find a proof of the equation on its own or with the help of
+some external automated theorem prover (ATP), which in this
+tutorial is supposed to be Eprover, available through Systems
+on TPTP.</p>
+<p>The premises and the current conjecture are sent to
+Eprover; Eprover is then asked to search for a proof of the
+conjecture from the premises. A proof by Eprover consists of
+a series of applications of proof rules that are inplemented
+in the system. Many of Eprover's rules correspond to various
+<em>substitutions</em> of subterms of terms by equal terms.</p>
+<p>Consider the above</p>
+<p>Proof.
+\((x+y)*(x-y) =
+x^2 - x*y + y*x -y^2 =
+x^2 - 0 - y^2 =
+x^2 - y^2 \).
+Qed.</p>
+<p>The second equality
+\( x^2 - x*y + y*x -y^2 = x^2 - 0 - y^2 \) can
+be justified by</p>
+<ol>
+<li>
+<p>substituting \(y*x\) by \(x*y\)
+(on the basis of Axiom 6, the commutativity of \(*\)),</p>
+</li>
+<li>
+<p>substituting \( - x*y + x*y \) by \( + x*y - x*y \)
+(Axiom 2, the commutativity of \(+\)),</p>
+</li>
+<li>
+<p>substituting \( + x*y - x*y \) by \(0\) (Axiom 4).</p>
+</li>
+</ol>
+<p>Eprover has several proof rules at its disposition with which
+these substitutions can be carried out. Without going into
+the many technical details, there is, e.g., a rule</p>
+<p>\( \frac{s = t \vee S \;\;\;  u=v \vee R}
+{\sigma([u\vert p \leftarrow t] = v \vee S \vee R)} \)</p>
+<p>which is applicable if the term \(u\) has a part \(p\)
+which can be made identical to \(s\) by a common substitution
+\(\sigma\) of variables (&quot;unification&quot;). Then one generates the
+new equality
+\( \sigma([u\vert p \leftarrow t] = v) \)
+where t replaces the part of \(u\); the identifying substitution
+\(\sigma\) has to be applied to all terms in the new equality.
+(For simplicity we omit the further hypothesis \(S\) and
+\(R\).)</p>
+<p>This rule is able to generate the three substitutions mentioned
+above. So Eprover's search process through finite combinations
+of a small number of proof rules is able to prove the equality under
+consideration. Note that it is non-trivial to exactly
+specify the above proof rule: one needs to define and range
+over all possible subterms of a term under consideration, search
+for &quot;unifying&quot; substitutions, and apply them consistently to all
+formulas involved. Naproche aims to replace the &quot;intelligence&quot; of
+a human proof reader by search in a space of
+(instances of) proof rules.</p>
+<a class="header" href="print.html#trying-to-prove-binomial-formulas-in-naproche" id="trying-to-prove-binomial-formulas-in-naproche"><h2>Trying to Prove Binomial Formulas in Naproche</h2></a>
+<p>Ordinary mathematics possesses notational possibilities and freedoms
+that are not yet implemented in Naproche. Writing</p>
+<p>\((x+y)^2=x^2 + 2*x*y + y^2 \)</p>
+<p>we use the associativity of addition and multiplication so that
+we don't need brackets to specify the order in which these
+<em>binary</em> operations are carried out. Furthermore we implicity assume
+that multiplication has higher priority than addition, so that the
+product \((2*x*y\) is carried out &quot;before&quot; the additions which
+again saves brackets. We intend
+to implement these conveniences in Naproche, but so far we have to
+write:</p>
+<pre><code>(x + y)^2 = (x^2 + ((2 * x) * y)) + y^2
+</code></pre>
+<p>Observing the notational requirements, we try to prove
+this formula directly from the axioms and input the following text:</p>
+<pre><code>[synonym number/numbers]
+Signature. A number is a mathematical object.
+Let x,y,z denote numbers.
+
+
+Signature. x + y is a number. Let the sum of x and y denote x + y.
+
+Signature. x * y is a number. Let the product of x and y denote x * y.
+
+Signature. - x is a number. Let the negative of x denote - x.
+
+Signature. 0 is a number.
+
+Signature. 1 is a number such that 1 != 0.
+
+Signature. Assume that x != 0. 1 / x is a number.
+
+Axiom. (x + y) + z = x + (y + z).
+
+Axiom. x + y = y + x.
+
+Axiom. x + 0 = x.
+
+Axiom. x + (-x) = 0.
+
+Axiom. (x * y) * z = x * (y * z).
+
+Axiom. x * y = y * x.
+
+Axiom. x * 1 = x.
+
+Axiom. Let x != 0. Then x * (1/x) = 1.
+
+Axiom. x * (y + z) = (x * y) + (x * z).
+
+
+Let x - y stand for x + (-y).
+Let x^2 stand for x * x.
+Let 2 stand for 1 + 1.
+
+Lemma. (x + y)^2 = (x^2 + ((2 * x) * y)) + y^2.
+</code></pre>
+<p>Naproche (and Eprover), however, are not able to check the correctness of
+the Lemma: the verification fails. With only the axioms
+available it is apparently
+impossible to find the right sequence of substitutions. But human
+mathematicians also have to spend some time thinking about
+the organization
+of the argument.</p>
+<p>Even adding the proof</p>
+<pre><code>Proof. (x + y)^2 = (x^2 + (x * y)) + ((y * x) + y^2) =
+(x^2 + ((x * y) + (y * x))) + y^2.
+Qed.
+</code></pre>
+<p>does not help.</p>
+<a class="header" href="print.html#interactive-theorem-proving-itp" id="interactive-theorem-proving-itp"><h2>Interactive Theorem Proving (ITP)</h2></a>
+<p>The solution lies in an <em>interactive</em> approach. The human user
+formulates intermediate lemmas that can be proved easier or
+proof-checked automatically and which will build up to
+more sophisticated results. Let us first consider some simple
+consequences of the axioms.</p>
+<pre><code class="language-lean"># [synonym number/numbers]
+# Signature. A number is a mathematical object.
+# Let x,y,z denote numbers.
+# 
+# Signature. x + y is a number. Let the sum of x and y denote x + y.
+# 
+# Signature. x * y is a number. Let the product of x and y denote x * y.
+# 
+# Signature. - x is a number. Let the negative of x denote - x.
+# 
+# Signature. 0 is a number.
+# 
+# Signature. 1 is a number such that 1 != 0.
+# 
+# Signature. Assume that x != 0. 1 / x is a number.
+# 
+# Axiom. (x + y) + z = x + (y + z).
+# 
+# Axiom. x + y = y + x.
+# 
+# Axiom. x + 0 = x.
+# 
+# Axiom. x + (-x) = 0.
+# 
+# Axiom. (x * y) * z = x * (y * z).
+# 
+# Axiom. x * y = y * x.
+# 
+# Axiom. x * 1 = x.
+# 
+# Axiom. Let x != 0. Then x * (1/x) = 1.
+# 
+# Axiom. x * (y + z) = (x * y) + (x * z).
+# 
+# 
+Lemma. (y * x) + (z * x) = (y + z) * x.
+</code></pre>
+<p>This symmetric variant of the axiom of distributivity
+is immediately accepted by Naproche. It follows
+by a chain of simple substitutions, using the commutativity of \(*\). The canonical proof is also accepted by Naproche.</p>
+<pre><code class="language-lean"># [synonym number/numbers]
+# Signature. A number is a mathematical object.
+# Let x,y,z denote numbers.
+# 
+# Signature. x + y is a number. Let the sum of x and y denote x + y.
+# 
+# Signature. x * y is a number. Let the product of x and y denote x * y.
+# 
+# Signature. - x is a number. Let the negative of x denote - x.
+# 
+# Signature. 0 is a number.
+# 
+# Signature. 1 is a number such that 1 != 0.
+# 
+# Signature. Assume that x != 0. 1 / x is a number.
+# 
+# Axiom. (x + y) + z = x + (y + z).
+# 
+# Axiom. x + y = y + x.
+# 
+# Axiom. x + 0 = x.
+# 
+# Axiom. x + (-x) = 0.
+# 
+# Axiom. (x * y) * z = x * (y * z).
+# 
+# Axiom. x * y = y * x.
+# 
+# Axiom. x * 1 = x.
+# 
+# Axiom. Let x != 0. Then x * (1/x) = 1.
+# 
+# Axiom. x * (y + z) = (x * y) + (x * z).
+# 
+# 
+Lemma. (y * x) + (z * x) = (y + z) * x.
+Proof.
+(y * x) + (z * x) = (x * y) + (x * z) = x * (y + z) = (y + z) * x.
+Qed.
+</code></pre>
+<p>Continuing with the following lemma on left-cancellation, Eprover runs
+into difficulties. (The two other automated theorem provers
+available in the webinterface manage to prove both lemmas unaided.)</p>
+<pre><code class="language-lean"># [synonym number/numbers]
+# Signature. A number is a mathematical object.
+# Let x,y,z denote numbers.
+# 
+# Signature. x + y is a number. Let the sum of x and y denote x + y.
+# 
+# Signature. x * y is a number. Let the product of x and y denote x * y.
+# 
+# Signature. - x is a number. Let the negative of x denote - x.
+# 
+# Signature. 0 is a number.
+# 
+# Signature. 1 is a number such that 1 != 0.
+# 
+# Signature. Assume that x != 0. 1 / x is a number.
+# 
+# Axiom. (x + y) + z = x + (y + z).
+# 
+# Axiom. x + y = y + x.
+# 
+# Axiom. x + 0 = x.
+# 
+# Axiom. x + (-x) = 0.
+# 
+# Axiom. (x * y) * z = x * (y * z).
+# 
+# Axiom. x * y = y * x.
+# 
+# Axiom. x * 1 = x.
+# 
+# Axiom. Let x != 0. Then x * (1/x) = 1.
+# 
+# Axiom. x * (y + z) = (x * y) + (x * z).
+# 
+Lemma. (y * x) + (z * x) = (y + z) * x.
+ 
+Lemma. If x + y = x + z then y = z.
+</code></pre>
+<p>Apparently the obvious left-addition of <code>-x</code> does not occur to Eprover.
+So we give Eprover an explicit proof:</p>
+<pre><code class="language-lean"># [synonym number/numbers]
+# Signature. A number is a mathematical object.
+# Let x,y,z denote numbers.
+# 
+# Signature. x + y is a number. Let the sum of x and y denote x + y.
+# 
+# Signature. x * y is a number. Let the product of x and y denote x * y.
+# 
+# Signature. - x is a number. Let the negative of x denote - x.
+# 
+# Signature. 0 is a number.
+# 
+# Signature. 1 is a number such that 1 != 0.
+# 
+# Signature. Assume that x != 0. 1 / x is a number.
+# 
+# Axiom. (x + y) + z = x + (y + z).
+# 
+# Axiom. x + y = y + x.
+# 
+# Axiom. x + 0 = x.
+# 
+# Axiom. x + (-x) = 0.
+# 
+# Axiom. (x * y) * z = x * (y * z).
+# 
+# Axiom. x * y = y * x.
+# 
+# Axiom. x * 1 = x.
+# 
+# Axiom. Let x != 0. Then x * (1/x) = 1.
+# 
+# Axiom. x * (y + z) = (x * y) + (x * z).
+# 
+# 
+# Lemma. (y * x) + (z * x) = (y + z) * x.
+# 
+Lemma. If x + y = x + z then y = z.
+Proof. 
+Assume x + y = x + z. Then
+y = ((-x) + x) + y = (-x) + (x+y) = (-x) + (x+z) = ((-x) + x) + z = z.
+Qed.
+</code></pre>
+<a class="header" href="print.html#exercises-6" id="exercises-6"><h2>Exercises</h2></a>
+<p>We propose several exercises with the following sequence of
+lemmas that will be useful
+for the binomial identities.</p>
+<pre><code class="language-lean"># [synonym number/numbers]
+# Signature. A number is a mathematical object.
+# Let x,y,z denote numbers.
+# 
+# Signature. x + y is a number. Let the sum of x and y denote x + y.
+# 
+# Signature. x * y is a number. Let the product of x and y denote x * y.
+# 
+# Signature. - x is a number. Let the negative of x denote - x.
+# 
+# Signature. 0 is a number.
+# 
+# Signature. 1 is a number such that 1 != 0.
+# 
+# Signature. Assume that x != 0. 1 / x is a number.
+# 
+# Axiom. (x + y) + z = x + (y + z).
+# 
+# Axiom. x + y = y + x.
+# 
+# Axiom. x + 0 = x.
+# 
+# Axiom. x + (-x) = 0.
+# 
+# Axiom. (x * y) * z = x * (y * z).
+# 
+# Axiom. x * y = y * x.
+# 
+# Axiom. x * 1 = x.
+# 
+# Axiom. Let x != 0. Then x * (1/x) = 1.
+# 
+# Axiom. x * (y + z) = (x * y) + (x * z).
+# 
+# 
+# Lemma. (y * x) + (z * x) = (y + z) * x.
+# 
+# Lemma. If x + y = x + z then y = z.
+# Proof. 
+# Assume x + y = x + z. Then
+# y = ((-x) + x) + y = (-x) + (x+y) = (-x) + (x+z) = ((-x) + x) + z = z.
+# Qed.
+# 
+Lemma. If x + y = x then y = 0.
+
+Lemma. -(-x) = x.
+
+Lemma. If x != 0 and x * y = x * z then y = z.
+
+Lemma. If x != 0 and x * y = 1 then y = 1/x.
+
+Lemma. If x != 0 then 1/(1/x) = x.
+
+Lemma. 0 * x = 0.
+
+Lemma. If x != 0 and y != 0 then x * y != 0.
+
+Lemma. (-x) * y = -(x * y).
+
+Lemma. -x = -1 * x.
+
+Lemma. (-x) * (-y) = x * y.
+</code></pre>
+<ol start="3">
+<li>
+<p>Prove these lemmas by &quot;ordinary proofs&quot;.</p>
+</li>
+<li>
+<p>Formulate these proofs so that they are accepted by Naproche.</p>
+</li>
+<li>
+<p>Which of the lemmas can Naproche verify without an explicit proof?
+Augment the list of lemmas so that the whole document is accepted
+by Naproche.</p>
+</li>
+</ol>
+<a class="header" href="print.html#proving-binomial-identities-interactively" id="proving-binomial-identities-interactively"><h1>Proving Binomial Identities Interactively</h1></a>
+<p>On the basis of the axioms and lemmas so far, we shall now formalize
+proofs of the standard binomial identities. We introduce some
+notation by parser instructions (<code>Let ... stand for ... .</code>] and
+state the first identity. Not we have switched off proving for the part of
+the document that has been verified so far by the <code>[prove off]</code> and
+<code>[prove on]</code> instructions.</p>
+<pre><code class="language-lean">[prove off]
+[synonym number/numbers]
+Signature. A number is a mathematical object.
+Let x,y,z denote numbers.
+
+Signature. x + y is a number. Let the sum of x and y denote x + y.
+
+Signature. x * y is a number. Let the product of x and y denote x * y.
+
+Signature. - x is a number. Let the negative of x denote - x.
+
+Signature. 0 is a number.
+
+Signature. 1 is a number such that 1 != 0.
+
+Signature. Assume that x != 0. 1 / x is a number.
+
+Axiom. (x + y) + z = x + (y + z).
+
+Axiom. x + y = y + x.
+
+Axiom. x + 0 = x.
+
+Axiom. x + (-x) = 0.
+
+Axiom. (x * y) * z = x * (y * z).
+
+Axiom. x * y = y * x.
+
+Axiom. x * 1 = x.
+
+Axiom. Let x != 0. Then x * (1/x) = 1.
+
+Axiom. x * (y + z) = (x * y) + (x * z).
+
+
+Lemma. (y * x) + (z * x) = (y + z) * x.
+
+Lemma. If x + y = x + z then y = z.
+Proof. 
+Assume x + y = x + z. Then
+y = ((-x) + x) + y = (-x) + (x+y) = (-x) + (x+z) = ((-x) + x) + z = z.
+Qed.
+ 
+Lemma. If x + y = x then y = 0.
+
+Lemma. -(-x) = x.
+
+Lemma. If x != 0 and x * y = x * z then y = z.
+
+Lemma. If x != 0 and x * y = 1 then y = 1/x.
+
+Lemma. If x != 0 then 1/(1/x) = x.
+
+Lemma. 0 * x = 0.
+
+Lemma. If x != 0 and y != 0 then x * y != 0.
+
+Lemma. (-x) * y = -(x * y).
+
+Lemma. -x = -1 * x.
+
+Lemma. (-x) * (-y) = x * y.
+
+Let t x - y stand for x + (-y).
+Let t x^2 stand for x * x.
+Let 2 stand for 1 + 1.
+
+[prove on]
+
+Lemma. (x + y)^2 = (x^2 + ((2 * x) * y)) + y^2.
+</code></pre>
+<p>Naproche is not able to verify this lemma without an explicit
+proof (try!). So we  &quot;interactively&quot; give
+intermediate steps
+to Naproche in form of an equation chain. For concenience
+we hide the initial part of the document where we
+also disable the proving.</p>
+<pre><code class="language-lean"># [prove off]
+# [synonym number/numbers]
+# Signature. A number is a mathematical object.
+# Let x,y,z denote numbers.
+# 
+# Signature. x + y is a number. Let the sum of x and y denote x + y.
+# 
+# Signature. x * y is a number. Let the product of x and y denote x * y.
+# 
+# Signature. - x is a number. Let the negative of x denote - x.
+# 
+# Signature. 0 is a number.
+# 
+# Signature. 1 is a number such that 1 != 0.
+# 
+# Signature. Assume that x != 0. 1 / x is a number.
+# 
+# Axiom. (x + y) + z = x + (y + z).
+# 
+# Axiom. x + y = y + x.
+# 
+# Axiom. x + 0 = x.
+# 
+# Axiom. x + (-x) = 0.
+# 
+# Axiom. (x * y) * z = x * (y * z).
+# 
+# Axiom. x * y = y * x.
+# 
+# Axiom. x * 1 = x.
+# 
+# Axiom. Let x != 0. Then x * (1/x) = 1.
+# 
+# Axiom. x * (y + z) = (x * y) + (x * z).
+# 
+# 
+# Lemma. (y * x) + (z * x) = (y + z) * x.
+# 
+# Lemma. If x + y = x + z then y = z.
+# Proof. 
+# Assume x + y = x + z. Then
+# y = ((-x) + x) + y = (-x) + (x+y) = (-x) + (x+z) = ((-x) + x) + z = z.
+# Qed.
+# 
+# Lemma. If x + y = x then y = 0.
+# 
+# Lemma. -(-x) = x.
+# 
+# Lemma. If x != 0 and x * y = x * z then y = z.
+# 
+# Lemma. If x != 0 and x * y = 1 then y = 1/x.
+# 
+# Lemma. If x != 0 then 1/(1/x) = x.
+# 
+# Lemma. 0 * x = 0.
+# 
+# Lemma. If x != 0 and y != 0 then x * y != 0.
+# 
+# Lemma. (-x) * y = -(x * y).
+# 
+# Lemma. -x = -1 * x.
+# 
+# Lemma. (-x) * (-y) = x * y.
+# 
+# [prove on]
+# 
+Let x - y stand for x + (-y).
+Let x^2 stand for x * x.
+Let 2 stand for 1 + 1.
+
+Lemma. (x + y)^2 = (x^2 + ((2 * x) * y)) + y^2.
+Proof. (x + y)^2 = (x^2 + (x * y)) + ((y * x) + y^2) =
+(x^2 + ((x * y) + (y * x))) + y^2.
+Qed.
+</code></pre>
+<p>Apparently Naproche needs some hint to factor out the
+product and to regroup the brackets.</p>
+<a class="header" href="print.html#exercises-7" id="exercises-7"><h2>Exercises</h2></a>
+<ol>
+<li>
+<p>Experiment with the proof to see whether the chain
+of equations can be modified. Does the
+weaker prover SPASS need a longer chain?</p>
+</li>
+<li>
+<p>In our text, x-y, x^2, and 2 are just syntactic
+abbreviations. Try to use definitions instead.</p>
+</li>
+<li>
+<p>Prove the binomial identities for
+\( (x-y)^2 \) and \( (x+y)*(x-y) \) in
+ordinary language and in Naproche.</p>
+</li>
+</ol>
+<a class="header" href="print.html#ontological-correctness" id="ontological-correctness"><h1>Ontological Correctness</h1></a>
+<a class="header" href="print.html#division-by-0" id="division-by-0"><h2>Division by 0?</h2></a>
+<p>Everybody knows that the term \(\frac{1}{0}\) does
+not have a well-defined value and should best be avoided. But what
+about \(\frac{1}{t}\) for some term \(t\). Do we know
+beforehand that \(t\neq 0\) so that \(\frac{1}{t}\) is
+reasonably defined? It appears natural to view
+\(\frac{1}{x}\) as a <em>partial</em> function from numbers to numbers
+that is <em>undefined</em> for \(x = 0\); when writing \(\frac{1}{t}\)
+it should be &quot;obvious&quot; to the writer and reader that
+\(t\neq 0\) in this context. Or, if this is not obvious,
+the use of \(\frac{1}{t}\) should be preceded or followed by
+an argument that indeed \(t\neq 0\).</p>
+<p>Correspondingly, in automated proof checking, the term \(\frac{1}{t}\)
+would spawn an implicit proof task \(t\neq 0\) which has to be discharged before further use of \(\frac{1}{t}\).</p>
+<pre><code class="language-lean"># [synonym number/numbers]
+# Signature. A number is a mathematical object.
+# Let x,y,z denote numbers.
+# 
+# Signature. x + y is a number. Let the sum of x and y denote x + y.
+# 
+# Signature. x * y is a number. Let the product of x and y denote x * y.
+# 
+# Signature. - x is a number. Let the negative of x denote - x.
+# 
+# Signature. 0 is a number.
+# 
+# Signature. 1 is a number such that 1 != 0.
+# 
+# Signature. Assume that x != 0. 1 / x is a number.
+# 
+# Axiom. (x + y) + z = x + (y + z).
+# 
+# Axiom. x + y = y + x.
+# 
+# Axiom. x + 0 = x.
+# 
+# Axiom. x + (-x) = 0.
+# 
+# Axiom. (x * y) * z = x * (y * z).
+# 
+# Axiom. x * y = y * x.
+# 
+# Axiom. x * 1 = x.
+# 
+# Axiom. Let x != 0. Then x * (1/x) = 1.
+# 
+# Axiom. x * (y + z) = (x * y) + (x * z).
+# 
+# 
+# Lemma. (y * x) + (z * x) = (y + z) * x.
+# 
+# Lemma. If x + y = x + z then y = z.
+# Proof. 
+# Assume x + y = x + z. Then
+# y = ((-x) + x) + y = (-x) + (x+y) = (-x) + (x+z) = ((-x) + x) + z = z.
+# Qed.
+# 
+Lemma. If x + y = x then y = 0.
+
+Lemma. -(-x) = x.
+
+Lemma. If x != 0 and x * y = x * z then y = z.
+
+Lemma. If x != 0 and x * y = 1 then y = 1/x.
+
+Lemma. If x != 0 then 1/(1/x) = x.
+
+Lemma. 0 * x = 0.
+
+Lemma. If x != 0 and y != 0 then x * y != 0.
+
+Lemma. (-x) * y = -(x * y).
+
+Lemma. -x = -1 * x.
+
+Lemma. (-x) * (-y) = x * y.
+
+Lemma. 1 / x^2 is a number.
+</code></pre>
+<pre><code>
+</code></pre>
+<p>We see that a trivial logical task may involve serious proving
+for the legitimacy of the terms involved. (Statistical details)</p>
+<p>Indeed, the question whether \(t\neq 0\) can in general be
+highly complex, because one could define \(t\) by a case
+distinction as \(0\) or \(1\) depending on some
+arbitrary condition.</p>
+<p>Was ist mit Formulierungen 1/x exists (and ...)
+Integral exists.</p>
+<p>Ontological checking.</p>
+<p>1/x hatte x != 0 als voraussetzung. In der Tat noch mehr Voraussetzungen.
+Es sollen alle Voraussetzungen geprüft werden. Geschachtelte
+Aufgaben bei Termen wie x^2 + 1 / x^2.
+Diesen Term-Baum nennen, und den entsprechenden Checking-Baum
+Oder z.B. bei 1/x^8.</p>
+<p>Noch Ontological checking as a case of type-casting:
+every integer is a real number.</p>
+<p>Discussion Complexity Ontological Checking</p>
+<p>Remark:
+In <em>type theories</em> one establishes the well-definedness of terms
+by <em>static</em> type checking before the proof. It is even possible to
+construe the logical correctness proof as type checking. But then one
+needs all terms to be defined, so that \(\frac{1}{0}\) has
+to assume a value. This might be a special value <code>undefined</code>
+to be added to notions, or some artificial assignment like
+\(\frac{1}{0} = 0\) as in Isabelle.</p>
+<p>Constants, variables and operations are required to fit together
+with respect to their types, or <em>notions</em>: if addition and
+multiplication and squaring are defined
+for natural numbers, then all proper subterms of \(b * x^2 + c * x +d\)
+have to be natural numbers. This kind of type correctness is called
+<em>ontological correctness</em>
+in Naproche. The term \(((b * x^2) + (c * x)) +d\)
+is only acceptable within
+natural number arithmetic and correspondingly by Naproche if</p>
+<p>\( b \), \( x \), \( x^2 \), \( b * x^2 \), \( c \),
+\( c * x \), \( (b * x^2) + c * x \), \( d \)</p>
+<p>are all natural numbers.
+The term thus spawns a number of proof tasks, that Naproche
+ideally can solve automatically.
+Note that Naproche requires extra brackets
+since otherwise the order of operations is ambiguous.</p>
+<p>Let us examine our polynomial in Naproche:</p>
+<pre><code>[synonym number/-s]
+Signature. A natural number is a notion.
+Signature. b is a natural number.
+Signature. c is a natural number.
+Signature. d is a natural number.
+Signature. Assume that x,y are natural numbers.
+x + y is a natural number.
+Signature. Assume that x,y are natural numbers.
+x * y is a natural number.
+Signature. Assume that x is a natural number.
+x^2 is a natural number.
+
+Lemma. Assume that x is a natural number.
+Then ((b * x^2) + (c * x)) + d is a natural number.
+</code></pre>
+<p>The Naproche output</p>
+<pre><code>[Main] sections 20 - goals 1 - trivial 0 - proved 0 - equations 0
+
+[Main] symbols 34 - checks 21 - trivial 21 - proved 0 - unfolds 0
+
+[Main] parser 00:01.14 - reasoner 00:00.21 - simplifier 00:00.00 - prover 00:00.00/00:00.00
+</code></pre>
+<p>indicates, that there has been one proper proof goal - the Lemma -
+and 21 further checks, which are the proof tasks for
+ontological correctness. If one erases the Lemma the number
+of ontological checks goes down to 11, since the subterms of the
+polynomial need not be checked ontologically.</p>
+<p>Let us now introduce an ontological error into the text by typing
+c as a real number.</p>
+<pre><code>[synonym number/-s]
+Signature. A natural number is a notion.
+Signature. A real number is a notion.
+Signature. b is a natural number.
+Signature. c is a real number.
+Signature. d is a natural number.
+Signature. Assume that x,y are natural numbers.
+x + y is a natural number.
+Signature. Assume that x,y are natural numbers.
+x * y is a natural number.
+Signature. Assume that x is a natural number.
+x^2 is a natural number.
+
+Lemma. Assume that x is a natural number.
+Then ((b * x^2) + (c * x)) + d is a natural number.
+</code></pre>
+<p>This text translates without errors. Then ... translation OK, check unrecognized, ontological checking
+at proof time, not at parsing time. (compiler, runtime, etc.)</p>
+<a class="header" href="print.html#latex-prettyprinting" id="latex-prettyprinting"><h1>LaTeX Prettyprinting</h1></a>
+<p>Mathematical publications are usually typeset
+with the LaTeX system which is specialized on
+prettyprinting symbolic mathematics.
+The LaTeX input format <code>tex</code> has become
+a de-facto standard for mathematics
+and can be considered as the <em>natural</em> mathematical
+file format. ForThel therefore allows a
+<code>ftl.tex</code> input format which as of now is a
+small subset of simple LaTeX.
+In the Naproche webinterface one can choose
+the input format in the <code>Format</code> menue.
+If a <code>ftl.tex</code> file is equipped with a
+suitable LaTeX header it can immediately
+be prettyprinted by, e.g., pdf-LaTeX</p>
+<p>LaTeX texts are structured by
+<code>\begin{...} ... \end{...}</code>
+environments, some of which correspond
+to the <code>Axiom</code>, <code>Definition</code>, <code>Theorem</code>,
+<code>Proof</code> environments of ForTheL. Therefore
+it is straightforward to
+replace a ForTheL <code>Theorem.</code> by
+<code>\begin{theorem} ... \end{theorem}</code>.
+Moreover one should substitute the ForTheL
+ASCII symbolism like <code>1/x</code> by proper
+LaTeX like <code>$\frac{1}{x}$</code>.</p>
+<p>Naproche also allows a <em>literate</em> LaTeX
+style: only material in a
+<code>\begin{forthel} ... \end{forthel}</code>
+environment (which is defined in a
+<code>naproche.sty</code> style file) is given to
+the proof checker. So one can use arbitrary
+LaTeX outside <code>forthel</code> environments and add
+titles, chapter headings, and comments.</p>
+<p>Here is a <code>ftl.tex</code> version of our text on
+binomial identities. The text checks alright
+in Naproche; copying it in a <code>ftl.tex</code> file it can
+be typeset easily provided
+<code>naproche.sty</code> is in the same directory.</p>
+<p>HIER noch weitere modificationen, neue Features,
+die dann kommentiert werden, und das pdf
+sollte auch mit dem Kurs übereinstimmen.</p>
+<pre><code>\documentclass{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{xurl}
+\usepackage[nonumbers]{naproche}
+
+\title{Proving Binomial Identities in Naproche}
+
+\setlength{\parindent}{0em}
+
+\begin{document}
+
+\maketitle
+
+\subsection*{The Language of Arithmetic}
+
+\begin{forthel}
+[synonym number/numbers]
+\begin{signature} A number is a mathematical object. 
+\end{signature}
+Let $x,y,z$ denote numbers.
+
+\begin{signature} $x + y$ is a number.  
+\end{signature}
+Let the sum of $x$ and $y$ denote $x + y$.
+
+\begin{signature} $x * y$ is a number. 
+\end{signature}
+Let the product of $x$ and $y$ denote $x * y$.
+
+\begin{signature} $- x$ is a number. 
+\end{signature}
+Let the negative of $x$ denote $- x$.
+
+\begin{signature} $0$ is a number.
+\end{signature}
+
+\begin{signature} $1$ is a number such that $1 \neq 0$.
+\end{signature}
+
+\begin{signature} Assume that $x \neq 0$. $\frac{1}{x}$ is a number.
+\end{signature}
+\end{forthel}
+
+\subsection*{The Axioms of Fields}
+
+\begin{forthel}
+
+\begin{axiom} $(x + y) + z = x + (y + z)$.
+\end{axiom}
+
+\begin{axiom} $x + y = y + x$.
+\end{axiom}
+
+\begin{axiom} $x + 0 = x$.
+\end{axiom}
+
+\begin{axiom} $x + (-x) = 0$.
+\end{axiom}
+
+\begin{axiom} $(x * y) * z = x * (y * z)$.
+\end{axiom}
+
+\begin{axiom} $x * y = y * x$.
+\end{axiom}
+
+\begin{axiom} $x * 1 = x$.
+\end{axiom}
+
+\begin{axiom} Let $x \neq 0$. Then $x * \frac{1}{x} = 1$.
+\end{axiom}
+
+\begin{axiom} $x * (y + z) = (x * y) + (x * z)$.
+\end{axiom}
+
+\end{forthel}
+
+\subsection*{Simple Consequences}
+
+\begin{forthel}
+
+\begin{lemma} $(y * x) + (z * x) = (y + z) * x$.
+\end{lemma}
+
+\begin{lemma} If $x + y = x + z$ then $y = z$.
+\end{lemma}
+\begin{proof} 
+Assume $x + y = x + z$. Then
+$$y = ((-x) + x) + y = (-x) + (x+y) = (-x) + (x+z) = ((-x) + x) + z = z.$$
+\end{proof}
+
+\begin{lemma} If $x + y = x$ then $y = 0$.
+\end{lemma}
+
+\begin{lemma} $-(-x) = x$.
+\end{lemma}
+
+\begin{lemma} If $x \neq 0$ and $x * y = x * z$ then $y = z$.
+\end{lemma}
+
+\begin{lemma} If $x \neq 0$ and $x * y = 1$ then $y = \frac{1}{x}$.
+\end{lemma}
+
+\begin{lemma} If $x \neq 0$ then $\frac{1}{\frac{1}{x}} = x$.
+\end{lemma}
+
+\begin{lemma} $0 * x = 0$.
+\end{lemma}
+
+\begin{lemma} If $x \neq 0$ and $y \neq 0$ then $x * y \neq 0$.
+\end{lemma}
+
+\begin{lemma} $(-x) * y = -(x * y)$.
+\end{lemma}
+\begin{proof} $$(x * y) + (-x * y) = (x + (-x)) * y = 
+0 * x = 0.$$ 
+\end{proof}
+
+\begin{lemma} $-x = -1 * x$.
+\end{lemma}
+
+\begin{lemma} $(-x) * (-y) = x * y$.
+\end{lemma}
+
+\end{forthel}
+
+\subsection*{The Binomial Identities}
+
+\begin{forthel}
+
+Let $x - y$ stand for $x + (-y)$.
+Let $x^2$ stand for $x * x$.
+Let $2$ stand for $1 + 1$.
+
+
+\begin{lemma} $(x + y)^2 = (x^2 + ((2 * x) * y)) + y^2$.
+\end{lemma}
+\begin{proof} 
+$$(x + y)^2 = (x^2 + (x * y)) + ((y * x) + y^2) =
+(x^2 + ((x * y) + (y * x))) + y^2.$$
+\end{proof}
+
+\begin{lemma} $(x - y)^2 = (x^2 - ((2 * x) * y)) + y^2$.
+\end{lemma}
+\begin{proof} $$(x - y)^2 = (x^2 - (x * y)) + (-(y * x) + (-y)^2) =
+(x^2 - ((x * y) + (y * x))) + y^2.$$
+\end{proof}
+
+\begin{lemma} $(x + y) * (x - y) = x^2 - y^2$.
+\end{lemma}
+\begin{proof} $$(x + y) * (x - y) = 
+(x^2 + (- (x * y))) + ((y * x) + (- y^2)) =
+x^2 + (((- x * y) + (y * x)) + (- y^2)) =
+x^2 - y^2 .$$
+\end{proof}
+
+\end{forthel}
+
+\end{document}
+
+</code></pre>
+<p>The pdf-LaTeX typesetting of this file can be seen <a href="binomial.ftl.pdf">here</a>.</p>
+<a class="header" href="print.html#fractional-arithmetic-project" id="fractional-arithmetic-project"><h1>Fractional Arithmetic (Project)</h1></a>
+<p>We propose that students develop, in the theory developed so far, the
+usual arithmetical laws for fractions of the form
+\( \frac{x}{y} \) where \(x,y\) are numbers and $y \neq 0$.
+One can choose whether to treat \( \frac{x}{y} \) as an
+<em>abbreviation</em> for <code>x \* (1/y)</code> or to <em>define</em> it accordingy.
+One could denote fractions by <code>x // y</code> in the <code>.ftl</code> style, or
+one could switch to the LaTeX style and use <code>\frac{x}{y}</code>. (Note
+that a single slash <code>/</code> has already been used for the inverse and
+lead to ambiguities when encountering <code>1 / x</code>.)</p>
+<p>After fixing notation, state and prove lemmas like
+\( \frac{a}{b} * \frac{c}{d} = \frac{a*c}{b*d} \),
+\( \frac{a}{b} + \frac{c}{d} = \dots \),
+\( \frac{\frac{a}{b}}{\frac{c}{d}} = \dots \), etc.</p>
+
+                </div>
+
+                <!-- Mobile navigation buttons -->
+                
+
+                
+
+            </div>
+
+            
+
+            
+
+        </div>
+
+
+        <!-- Local fallback for Font Awesome -->
+        <script>
+            if ($(".fa").css("font-family") !== "FontAwesome") {
+                $('<link rel="stylesheet" type="text/css" href="_FontAwesome/css/font-awesome.css">').prependTo('head');
+            }
+        </script>
+
+        <!-- Livereload script (if served using the cli tool) -->
+        
+
+        
+
+        
+
+        
+        <script>
+            $(document).ready(function() {
+                window.print();
+            })
+        </script>
+        
+
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
+
+        <!-- Custom JS script -->
+        
+
+    </body>
+</html>

@@ -1,0 +1,161 @@
+\documentclass{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{xurl}
+\usepackage[nonumbers]{naproche}
+
+\title{Proving Binomial Identities in Naproche}
+
+\setlength{\parindent}{0em}
+
+\begin{document}
+
+\maketitle
+
+\subsection*{The Language of Arithmetic}
+
+\begin{forthel}
+[synonym number/numbers]
+\begin{signature} A number is a mathematical object. 
+\end{signature}
+Let $x,y,z$ denote numbers.
+
+\begin{signature} $x + y$ is a number.  
+\end{signature}
+Let the sum of $x$ and $y$ denote $x + y$.
+
+\begin{signature} $x * y$ is a number. 
+\end{signature}
+Let the product of $x$ and $y$ denote $x * y$.
+
+\begin{signature} $- x$ is a number. 
+\end{signature}
+Let the negative of $x$ denote $- x$.
+
+\begin{signature} $0$ is a number.
+\end{signature}
+
+\begin{signature} $1$ is a number such that $1 \neq 0$.
+\end{signature}
+
+\begin{signature} Assume that $x \neq 0$. $\frac{1}{x}$ is a number.
+\end{signature}
+\end{forthel}
+
+\subsection*{The Axioms of Fields}
+
+\begin{forthel}
+
+\begin{axiom} $(x + y) + z = x + (y + z)$.
+\end{axiom}
+
+\begin{axiom} $x + y = y + x$.
+\end{axiom}
+
+\begin{axiom} $x + 0 = x$.
+\end{axiom}
+
+\begin{axiom} $x + (-x) = 0$.
+\end{axiom}
+
+\begin{axiom} $(x * y) * z = x * (y * z)$.
+\end{axiom}
+
+\begin{axiom} $x * y = y * x$.
+\end{axiom}
+
+\begin{axiom} $x * 1 = x$.
+\end{axiom}
+
+\begin{axiom} Let $x \neq 0$. Then $x * \frac{1}{x} = 1$.
+\end{axiom}
+
+\begin{axiom} $x * (y + z) = (x * y) + (x * z)$.
+\end{axiom}
+
+\end{forthel}
+
+\subsection*{Simple Consequences}
+
+\begin{forthel}
+
+\begin{lemma} $(y * x) + (z * x) = (y + z) * x$.
+\end{lemma}
+
+\begin{lemma} If $x + y = x + z$ then $y = z$.
+\end{lemma}
+\begin{proof} 
+Assume $x + y = x + z$. Then
+$$y = ((-x) + x) + y = (-x) + (x+y) = (-x) + (x+z) = ((-x) + x) + z = z.$$
+\end{proof}
+
+\begin{lemma} If $x + y = x$ then $y = 0$.
+\end{lemma}
+
+\begin{lemma} $-(-x) = x$.
+\end{lemma}
+
+\begin{lemma} If $x \neq 0$ and $x * y = x * z$ then $y = z$.
+\end{lemma}
+
+\begin{lemma} If $x \neq 0$ and $x * y = 1$ then $y = \frac{1}{x}$.
+\end{lemma}
+
+\begin{lemma} If $x \neq 0$ then $\frac{1}{\frac{1}{x}} = x$.
+\end{lemma}
+
+\begin{lemma} $0 * x = 0$.
+\end{lemma}
+
+\begin{lemma} If $x \neq 0$ and $y \neq 0$ then $x * y \neq 0$.
+\end{lemma}
+
+\begin{lemma} $(-x) * y = -(x * y)$.
+\end{lemma}
+\begin{proof} $$(x * y) + (-x * y) = (x + (-x)) * y = 
+0 * x = 0.$$ 
+\end{proof}
+
+\begin{lemma} $-x = -1 * x$.
+\end{lemma}
+
+\begin{lemma} $(-x) * (-y) = x * y$.
+\end{lemma}
+
+\end{forthel}
+
+\subsection*{The Binomial Identities}
+
+\begin{forthel}
+
+Let $x - y$ stand for $x + (-y)$.
+Let $x^2$ stand for $x * x$.
+Let $2$ stand for $1 + 1$.
+
+
+\begin{lemma} $(x + y)^2 = (x^2 + ((2 * x) * y)) + y^2$.
+\end{lemma}
+\begin{proof} 
+$$(x + y)^2 = (x^2 + (x * y)) + ((y * x) + y^2) =
+(x^2 + ((x * y) + (y * x))) + y^2.$$
+\end{proof}
+
+\begin{lemma} $(x - y)^2 = (x^2 - ((2 * x) * y)) + y^2$.
+\end{lemma}
+\begin{proof} $$(x - y)^2 = (x^2 - (x * y)) + (-(y * x) + (-y)^2) =
+(x^2 - ((x * y) + (y * x))) + y^2.$$
+\end{proof}
+
+\begin{lemma} $(x + y) * (x - y) = x^2 - y^2$.
+\end{lemma}
+\begin{proof} $$(x + y) * (x - y) = 
+(x^2 + (- (x * y))) + ((y * x) + (- y^2)) =
+x^2 + (((- x * y) + (y * x)) + (- y^2)) =
+x^2 - y^2 .$$
+\end{proof}
+
+\end{forthel}
+
+\end{document}
+

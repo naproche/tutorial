@@ -1,0 +1,353 @@
+<!DOCTYPE HTML>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>LaTeX Prettyprinting - Natural Proving with Naproche</title>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <base href="">
+
+        <link rel="stylesheet" href="book.css">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+        <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:500" rel="stylesheet" type="text/css">
+
+        <link rel="shortcut icon" href="favicon.png">
+
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme -->
+        
+
+        
+        <!-- MathJax -->
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        
+
+        <!-- Fetch Clipboard.js from CDN but have a local fallback -->
+        <script src="https://cdn.jsdelivr.net/clipboard.js/1.6.1/clipboard.min.js"></script>
+        <script>
+            if (typeof Clipboard == 'undefined') {
+                document.write(unescape("%3Cscript src='clipboard.min.js'%3E%3C/script%3E"));
+            }
+        </script>
+
+        <!-- Fetch JQuery from CDN but have a local fallback -->
+        <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+        <script>
+            if (typeof jQuery == 'undefined') {
+                document.write(unescape("%3Cscript src='jquery.js'%3E%3C/script%3E"));
+            }
+        </script>
+
+        <!-- Fetch store.js from local - TODO add CDN when 2.x.x is available on cdnjs -->
+        <script src="store.js"></script>
+
+    </head>
+    <body class="light">
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme = store.get('mdbook-theme');
+            if (theme === null || theme === undefined) { theme = 'light'; }
+            $('body').removeClass().addClass(theme);
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var sidebar = store.get('mdbook-sidebar');
+            if (sidebar === "hidden") { $("html").addClass("sidebar-hidden") }
+            else if (sidebar === "visible") { $("html").addClass("sidebar-visible") }
+        </script>
+
+        <div id="sidebar" class="sidebar">
+            <ul class="chapter"><li class="affix"><a href="title_page.html">Natural Proving with Naproche</a></li><li><a href="./introduction.html"><strong>1.</strong> Introduction</a></li><li><a href="./a_quick_introduction.html"><strong>2.</strong> Quick Start: 1 + 2 = 3 </a></li><li><a href="./mathematical_structures.html"><strong>3.</strong> Mathematical Structures</a></li><li><a href="./natural_language_aspects.html"><strong>4.</strong> Natural Language Aspects</a></li><li><a href="./terms.html"><strong>5.</strong> Terms</a></li><li><a href="./numbers.html"><strong>6.</strong> Numbers</a></li><li><a href="./proving_equations.html"><strong>7.</strong> Proving Equations</a></li><li><a href="./binomial_identities.html"><strong>8.</strong> Proving Binomial Identities in Naproche</a></li><li><a href="./ontological_correctness.html"><strong>9.</strong> Ontological Correctness</a></li><li><a href="./prettyprinting.html" class="active"><strong>10.</strong> LaTeX Prettyprinting</a></li><li><a href="./fractional_arithmetic.html"><strong>11.</strong> Fractional Arithmetic</a></li><li><strong>12.</strong> Relations</li><li><strong>13.</strong> Propositional Logic</li><li><strong>14.</strong> The Ordered Field of Reals</li><li><strong>15.</strong> Proving Inequalities</li><li><strong>16.</strong> ForTheL Statements and First-Order Logic</li><li><strong>17.</strong> The Natural Numbers</li><li><strong>18.</strong> Complete Induction</li><li><strong>19.</strong> Sets</li><li><strong>20.</strong> Functions</li><li><strong>21.</strong> ...</li></ul>
+        </div>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page" tabindex="-1">
+                
+                <div id="menu-bar" class="menu-bar">
+                    <div class="left-buttons">
+                        <i id="sidebar-toggle" class="fa fa-bars" title="Toggle sidebar"></i>
+                        <i id="theme-toggle" class="fa fa-paint-brush" title="Change theme"></i>
+                    </div>
+
+                    <h1 class="menu-title">Natural Proving with Naproche</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html">
+                            <i id="print-button" class="fa fa-print" title="Print this book"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div id="content" class="content">
+                    <a class="header" href="./prettyprinting.html#latex-prettyprinting" id="latex-prettyprinting"><h1>LaTeX Prettyprinting</h1></a>
+<p>Mathematical publications are usually typeset
+with the LaTeX system which is specialized on
+prettyprinting symbolic mathematics.
+The LaTeX input format <code>tex</code> has become
+a de-facto standard for mathematics
+and can be considered as the <em>natural</em> mathematical
+file format. ForThel therefore allows a
+<code>ftl.tex</code> input format which as of now is a
+small subset of simple LaTeX.
+In the Naproche webinterface one can choose
+the input format in the <code>Format</code> menue.
+If a <code>ftl.tex</code> file is equipped with a
+suitable LaTeX header it can immediately
+be prettyprinted by, e.g., pdf-LaTeX</p>
+<p>LaTeX texts are structured by
+<code>\begin{...} ... \end{...}</code>
+environments, some of which correspond
+to the <code>Axiom</code>, <code>Definition</code>, <code>Theorem</code>,
+<code>Proof</code> environments of ForTheL. Therefore
+it is straightforward to
+replace a ForTheL <code>Theorem.</code> by
+<code>\begin{theorem} ... \end{theorem}</code>.
+Moreover one should substitute the ForTheL
+ASCII symbolism like <code>1/x</code> by proper
+LaTeX like <code>$\frac{1}{x}$</code>.</p>
+<p>Naproche also allows a <em>literate</em> LaTeX
+style: only material in a
+<code>\begin{forthel} ... \end{forthel}</code>
+environment (which is defined in a
+<code>naproche.sty</code> style file) is given to
+the proof checker. So one can use arbitrary
+LaTeX outside <code>forthel</code> environments and add
+titles, chapter headings, and comments.</p>
+<p>Here is a <code>ftl.tex</code> version of our text on
+binomial identities. The text checks alright
+in Naproche; copying it in a <code>ftl.tex</code> file it can
+be typeset easily provided
+<code>naproche.sty</code> is in the same directory.</p>
+<p>HIER noch weitere modificationen, neue Features,
+die dann kommentiert werden, und das pdf
+sollte auch mit dem Kurs übereinstimmen.</p>
+<pre><code>\documentclass{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{xurl}
+\usepackage[nonumbers]{naproche}
+
+\title{Proving Binomial Identities in Naproche}
+
+\setlength{\parindent}{0em}
+
+\begin{document}
+
+\maketitle
+
+\subsection*{The Language of Arithmetic}
+
+\begin{forthel}
+[synonym number/numbers]
+\begin{signature} A number is a mathematical object. 
+\end{signature}
+Let $x,y,z$ denote numbers.
+
+\begin{signature} $x + y$ is a number.  
+\end{signature}
+Let the sum of $x$ and $y$ denote $x + y$.
+
+\begin{signature} $x * y$ is a number. 
+\end{signature}
+Let the product of $x$ and $y$ denote $x * y$.
+
+\begin{signature} $- x$ is a number. 
+\end{signature}
+Let the negative of $x$ denote $- x$.
+
+\begin{signature} $0$ is a number.
+\end{signature}
+
+\begin{signature} $1$ is a number such that $1 \neq 0$.
+\end{signature}
+
+\begin{signature} Assume that $x \neq 0$. $\frac{1}{x}$ is a number.
+\end{signature}
+\end{forthel}
+
+\subsection*{The Axioms of Fields}
+
+\begin{forthel}
+
+\begin{axiom} $(x + y) + z = x + (y + z)$.
+\end{axiom}
+
+\begin{axiom} $x + y = y + x$.
+\end{axiom}
+
+\begin{axiom} $x + 0 = x$.
+\end{axiom}
+
+\begin{axiom} $x + (-x) = 0$.
+\end{axiom}
+
+\begin{axiom} $(x * y) * z = x * (y * z)$.
+\end{axiom}
+
+\begin{axiom} $x * y = y * x$.
+\end{axiom}
+
+\begin{axiom} $x * 1 = x$.
+\end{axiom}
+
+\begin{axiom} Let $x \neq 0$. Then $x * \frac{1}{x} = 1$.
+\end{axiom}
+
+\begin{axiom} $x * (y + z) = (x * y) + (x * z)$.
+\end{axiom}
+
+\end{forthel}
+
+\subsection*{Simple Consequences}
+
+\begin{forthel}
+
+\begin{lemma} $(y * x) + (z * x) = (y + z) * x$.
+\end{lemma}
+
+\begin{lemma} If $x + y = x + z$ then $y = z$.
+\end{lemma}
+\begin{proof} 
+Assume $x + y = x + z$. Then
+$$y = ((-x) + x) + y = (-x) + (x+y) = (-x) + (x+z) = ((-x) + x) + z = z.$$
+\end{proof}
+
+\begin{lemma} If $x + y = x$ then $y = 0$.
+\end{lemma}
+
+\begin{lemma} $-(-x) = x$.
+\end{lemma}
+
+\begin{lemma} If $x \neq 0$ and $x * y = x * z$ then $y = z$.
+\end{lemma}
+
+\begin{lemma} If $x \neq 0$ and $x * y = 1$ then $y = \frac{1}{x}$.
+\end{lemma}
+
+\begin{lemma} If $x \neq 0$ then $\frac{1}{\frac{1}{x}} = x$.
+\end{lemma}
+
+\begin{lemma} $0 * x = 0$.
+\end{lemma}
+
+\begin{lemma} If $x \neq 0$ and $y \neq 0$ then $x * y \neq 0$.
+\end{lemma}
+
+\begin{lemma} $(-x) * y = -(x * y)$.
+\end{lemma}
+\begin{proof} $$(x * y) + (-x * y) = (x + (-x)) * y = 
+0 * x = 0.$$ 
+\end{proof}
+
+\begin{lemma} $-x = -1 * x$.
+\end{lemma}
+
+\begin{lemma} $(-x) * (-y) = x * y$.
+\end{lemma}
+
+\end{forthel}
+
+\subsection*{The Binomial Identities}
+
+\begin{forthel}
+
+Let $x - y$ stand for $x + (-y)$.
+Let $x^2$ stand for $x * x$.
+Let $2$ stand for $1 + 1$.
+
+
+\begin{lemma} $(x + y)^2 = (x^2 + ((2 * x) * y)) + y^2$.
+\end{lemma}
+\begin{proof} 
+$$(x + y)^2 = (x^2 + (x * y)) + ((y * x) + y^2) =
+(x^2 + ((x * y) + (y * x))) + y^2.$$
+\end{proof}
+
+\begin{lemma} $(x - y)^2 = (x^2 - ((2 * x) * y)) + y^2$.
+\end{lemma}
+\begin{proof} $$(x - y)^2 = (x^2 - (x * y)) + (-(y * x) + (-y)^2) =
+(x^2 - ((x * y) + (y * x))) + y^2.$$
+\end{proof}
+
+\begin{lemma} $(x + y) * (x - y) = x^2 - y^2$.
+\end{lemma}
+\begin{proof} $$(x + y) * (x - y) = 
+(x^2 + (- (x * y))) + ((y * x) + (- y^2)) =
+x^2 + (((- x * y) + (y * x)) + (- y^2)) =
+x^2 - y^2 .$$
+\end{proof}
+
+\end{forthel}
+
+\end{document}
+
+</code></pre>
+<p>The pdf-LaTeX typesetting of this file can be seen <a href="binomial.ftl.pdf">here</a>.</p>
+
+                </div>
+
+                <!-- Mobile navigation buttons -->
+                
+                    <a rel="prev" href="./ontological_correctness.html" class="mobile-nav-chapters previous" title="Previous chapter">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                
+
+                
+                    <a rel="next" href="./fractional_arithmetic.html" class="mobile-nav-chapters next" title="Next chapter">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+                
+
+            </div>
+
+            
+                <a href="./ontological_correctness.html" class="nav-chapters previous" title="You can navigate through the chapters using the arrow keys">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+            
+
+            
+                <a href="./fractional_arithmetic.html" class="nav-chapters next" title="You can navigate through the chapters using the arrow keys">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+            
+
+        </div>
+
+
+        <!-- Local fallback for Font Awesome -->
+        <script>
+            if ($(".fa").css("font-family") !== "FontAwesome") {
+                $('<link rel="stylesheet" type="text/css" href="_FontAwesome/css/font-awesome.css">').prependTo('head');
+            }
+        </script>
+
+        <!-- Livereload script (if served using the cli tool) -->
+        
+
+        
+
+        
+
+        
+
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
+
+        <!-- Custom JS script -->
+        
+
+    </body>
+</html>

@@ -1,0 +1,279 @@
+<!DOCTYPE HTML>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Terms - Natural Proving with Naproche</title>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <base href="">
+
+        <link rel="stylesheet" href="book.css">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+        <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:500" rel="stylesheet" type="text/css">
+
+        <link rel="shortcut icon" href="favicon.png">
+
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme -->
+        
+
+        
+        <!-- MathJax -->
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        
+
+        <!-- Fetch Clipboard.js from CDN but have a local fallback -->
+        <script src="https://cdn.jsdelivr.net/clipboard.js/1.6.1/clipboard.min.js"></script>
+        <script>
+            if (typeof Clipboard == 'undefined') {
+                document.write(unescape("%3Cscript src='clipboard.min.js'%3E%3C/script%3E"));
+            }
+        </script>
+
+        <!-- Fetch JQuery from CDN but have a local fallback -->
+        <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+        <script>
+            if (typeof jQuery == 'undefined') {
+                document.write(unescape("%3Cscript src='jquery.js'%3E%3C/script%3E"));
+            }
+        </script>
+
+        <!-- Fetch store.js from local - TODO add CDN when 2.x.x is available on cdnjs -->
+        <script src="store.js"></script>
+
+    </head>
+    <body class="light">
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme = store.get('mdbook-theme');
+            if (theme === null || theme === undefined) { theme = 'light'; }
+            $('body').removeClass().addClass(theme);
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var sidebar = store.get('mdbook-sidebar');
+            if (sidebar === "hidden") { $("html").addClass("sidebar-hidden") }
+            else if (sidebar === "visible") { $("html").addClass("sidebar-visible") }
+        </script>
+
+        <div id="sidebar" class="sidebar">
+            <ul class="chapter"><li class="affix"><a href="title_page.html">Natural Proving with Naproche</a></li><li><a href="./introduction.html"><strong>1.</strong> Introduction</a></li><li><a href="./a_quick_introduction.html"><strong>2.</strong> Quick Start: 1 + 2 = 3 </a></li><li><a href="./mathematical_structures.html"><strong>3.</strong> Mathematical Structures</a></li><li><a href="./natural_language_aspects.html"><strong>4.</strong> Natural Language Aspects</a></li><li><a href="./terms.html" class="active"><strong>5.</strong> Terms</a></li><li><a href="./numbers.html"><strong>6.</strong> Numbers</a></li><li><a href="./proving_equations.html"><strong>7.</strong> Proving Equations</a></li><li><a href="./binomial_identities.html"><strong>8.</strong> Proving Binomial Identities in Naproche</a></li><li><a href="./ontological_correctness.html"><strong>9.</strong> Ontological Correctness</a></li><li><a href="./prettyprinting.html"><strong>10.</strong> LaTeX Prettyprinting</a></li><li><a href="./fractional_arithmetic.html"><strong>11.</strong> Fractional Arithmetic</a></li><li><strong>12.</strong> Relations</li><li><strong>13.</strong> Propositional Logic</li><li><strong>14.</strong> The Ordered Field of Reals</li><li><strong>15.</strong> Proving Inequalities</li><li><strong>16.</strong> ForTheL Statements and First-Order Logic</li><li><strong>17.</strong> The Natural Numbers</li><li><strong>18.</strong> Complete Induction</li><li><strong>19.</strong> Sets</li><li><strong>20.</strong> Functions</li><li><strong>21.</strong> ...</li></ul>
+        </div>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page" tabindex="-1">
+                
+                <div id="menu-bar" class="menu-bar">
+                    <div class="left-buttons">
+                        <i id="sidebar-toggle" class="fa fa-bars" title="Toggle sidebar"></i>
+                        <i id="theme-toggle" class="fa fa-paint-brush" title="Change theme"></i>
+                    </div>
+
+                    <h1 class="menu-title">Natural Proving with Naproche</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html">
+                            <i id="print-button" class="fa fa-print" title="Print this book"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div id="content" class="content">
+                    <a class="header" href="./terms.html#terms" id="terms"><h1>Terms</h1></a>
+<p>An arithmetic term like \(b * x^2 + c * x +d\) is composed iteratively
+from <em>constants</em> \(b,c,d\), <em>variables</em> \(x \), and
+<em>operations</em>
+\(+\), \(*\), and \({}^2\).
+In ForTheL, all language elements are represented by patterns,
+regardless whether a term is symbolic or &quot;verbose&quot;. The binary
+operation \(+\) is, e.g., treated as the
+pattern <code>[ _ , &quot;+&quot;, _ ]</code> by the parser. Let us now consider
+various natural patterns that can be used to build terms.</p>
+<a class="header" href="./terms.html#variables" id="variables"><h2>Variables</h2></a>
+<p>Customarily, mathematical variables are single letters from the
+latin and other alphabets, and these can moreover be decorated in
+various ways, e.g. by numerical subscripts or primes.</p>
+<p>In Naproche the various grammatical categories are ultimately defined
+by the Naproche parser. The definition of the variable parser <code>var</code>
+models the various possibilities for variables in ASCII:</p>
+<pre><code>var :: FTL PosVar
+var = do
+  pos &lt;- getPos
+  v &lt;- satisfy (\s -&gt; Text.all isAlphaNum s &amp;&amp; isAlpha (Text.head s))
+  primes &lt;- Text.concat . fmap (const &quot;'&quot;) &lt;$&gt; many (symbol &quot;'&quot;)
+  let v' = v &lt;&gt; primes
+  return (PosVar (VarConstant v') pos)
+</code></pre>
+<p>This implies that a variable starts with an alphabetic symbol in
+{a,...,z,A,...,Z}, followed by arbitrarily many alphanumeric symbols,
+and finally an arbitrary number of primes <code>'</code>. So <code>x,y,z</code>, and <code>alpha, alpha1, alpha123</code>, and <code>alpha', alpha''</code> are examples of ForTheL variables.</p>
+<p>(Typed) variables can be introduced into a ForTheL text globally by
+a pre-typing:</p>
+<pre><code>Let alpha1 stand for natural numbers.
+</code></pre>
+<p>or locally by an assumption:</p>
+<pre><code>Assume that alpha1 is a natural number. 
+</code></pre>
+<a class="header" href="./terms.html#constants-and-operations" id="constants-and-operations"><h2>Constants and Operations</h2></a>
+<p>Constants can be considered as operations or functions without variable
+arguments which then take a constant &quot;value&quot;. So wee can treat
+constants and operations together. Mathematical operations
+are often denoted <em>symbolically</em>, like
+\( x + y \), but there are also <em>verbose</em> forms as in &quot;sum of \(x\) and
+\(y\)&quot;.</p>
+<p>In ForTheL, both cases can be represented as a configuration
+with holes for variables: \( \_ + \_ \),
+or &quot;the sum of \( \_ \) and \( \_ \)&quot;.
+As in the previous chapter, these can be viewed as
+a <em>pattern</em>: <code>[&quot;sum&quot;, &quot;of&quot;, _ , &quot;and&quot;, _ ]</code> or a
+<em>symbolic pattern</em>: <code>[ _ , &quot;+&quot;, _ ]</code>.</p>
+<p>In the ForTheL grammar these grammatical categories are described by
+the rules:</p>
+<pre><code>pattern → token { token } [ variable { token { token } variable } ]
+
+token → small { small }
+
+symbPattern → [ variable ] symbToken { variable symbToken } [ variable ]
+| word ( variable { , variable } )
+| word [ variable ]
+
+symbToken → symbol { symbol }
+
+word → alphanum { alphanum }
+</code></pre>
+<a class="header" href="./terms.html#constants" id="constants"><h3>Constants</h3></a>
+<p>Without variables, the above grammar rules reduce to</p>
+<pre><code>pattern → token { token }
+
+token → small { small }
+
+symbPattern → symbToken
+| word
+
+symbToken → symbol { symbol }
+
+word → alphanum { alphanum }
+</code></pre>
+<p>These rules produce a variety of names for constants like</p>
+<ul>
+<li>a,b,c, ..., x,y,z, A,B,C, alpha, beta, ..., Aleph, ...</li>
+<li>a1, a2, ..., A11, A12, A21, ...</li>
+<li>0, 1, ..., 456, ...</li>
+<li>Zero, One, ...</li>
+<li>&quot;empty set&quot;, &quot;infinity&quot;, &quot;Euler constant&quot;, ...</li>
+</ul>
+<p>In mathematics, there are many universal constants like all the
+natural numbers, the real numbers \(e\) and \( \pi \), the
+imaginary unit \(i\), .... These can be introduced in Naproche,
+except that we have to rewrite them in ASCII form like <code>pi</code> or
+<code>PI</code> for \( \pi \).</p>
+<a class="header" href="./terms.html#operations" id="operations"><h3>Operations</h3></a>
+<p>The above examples \( x + y \) and the &quot;sum of \(x\) and
+\(y\)&quot; are operations in the sense of the ForTheL grammar. They
+can be introduced into the language by commands like:</p>
+<pre><code>Signature. Assume x, y are numbers. x + y is a number.
+by
+Signature. Assume x, y are numbers. The sum of x and y is a
+number.
+</code></pre>
+<p>It is important, that the variables have been declared before the new
+pattern is introduced, otherwise x and y would not be seen as
+holes for arguments, but as ordinary tokens of the pattern. The <code>sum of x and y</code> would then be registered as a constant! One can check this in
+Naproche using the text</p>
+<pre><code>Signature. The sum of x and y is a number.
+
+Axiom. The sum of x and y is equal to the sum of y and x.
+</code></pre>
+<p>Instead of the local declaration of the variables by an assumption,
+one could also use a global pretyping:</p>
+<pre><code>Let x,y denote numbers.
+
+Signature. The sum of x and y is a number.
+
+Axiom. The sum of x and y is equal to the sum of y and x.
+</code></pre>
+<p>Constants and operations can have elaborate verbose names
+which can be chosen in line with mathematical usage. E.g.,</p>
+<pre><code>Signature. The circumference of the unit circle is a number.
+
+Signature. Assume that x is a number. One half of x is a number.
+
+Definition. Pi is one half of the circumference of the unit circle.
+</code></pre>
+<p>THE Integral of f from a to b.</p>
+<a class="header" href="./terms.html#exercises" id="exercises"><h2>Exercises</h2></a>
+<ol start="0">
+<li>Preceding things in Naproche checken.</li>
+<li>Term for binomial formula
+Terms with brackets!! Or without brackets (verbose in analogy to
+polish notation?)</li>
+<li>min max etc geschachtelt</li>
+<li>Ableitung?</li>
+</ol>
+
+                </div>
+
+                <!-- Mobile navigation buttons -->
+                
+                    <a rel="prev" href="./natural_language_aspects.html" class="mobile-nav-chapters previous" title="Previous chapter">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                
+
+                
+                    <a rel="next" href="./numbers.html" class="mobile-nav-chapters next" title="Next chapter">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+                
+
+            </div>
+
+            
+                <a href="./natural_language_aspects.html" class="nav-chapters previous" title="You can navigate through the chapters using the arrow keys">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+            
+
+            
+                <a href="./numbers.html" class="nav-chapters next" title="You can navigate through the chapters using the arrow keys">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+            
+
+        </div>
+
+
+        <!-- Local fallback for Font Awesome -->
+        <script>
+            if ($(".fa").css("font-family") !== "FontAwesome") {
+                $('<link rel="stylesheet" type="text/css" href="_FontAwesome/css/font-awesome.css">').prependTo('head');
+            }
+        </script>
+
+        <!-- Livereload script (if served using the cli tool) -->
+        
+
+        
+
+        
+
+        
+
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
+
+        <!-- Custom JS script -->
+        
+
+    </body>
+</html>

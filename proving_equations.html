@@ -1,0 +1,650 @@
+<!DOCTYPE HTML>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Proving Equations - Natural Proving with Naproche</title>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <base href="">
+
+        <link rel="stylesheet" href="book.css">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+        <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:500" rel="stylesheet" type="text/css">
+
+        <link rel="shortcut icon" href="favicon.png">
+
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme -->
+        
+
+        
+        <!-- MathJax -->
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        
+
+        <!-- Fetch Clipboard.js from CDN but have a local fallback -->
+        <script src="https://cdn.jsdelivr.net/clipboard.js/1.6.1/clipboard.min.js"></script>
+        <script>
+            if (typeof Clipboard == 'undefined') {
+                document.write(unescape("%3Cscript src='clipboard.min.js'%3E%3C/script%3E"));
+            }
+        </script>
+
+        <!-- Fetch JQuery from CDN but have a local fallback -->
+        <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+        <script>
+            if (typeof jQuery == 'undefined') {
+                document.write(unescape("%3Cscript src='jquery.js'%3E%3C/script%3E"));
+            }
+        </script>
+
+        <!-- Fetch store.js from local - TODO add CDN when 2.x.x is available on cdnjs -->
+        <script src="store.js"></script>
+
+    </head>
+    <body class="light">
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme = store.get('mdbook-theme');
+            if (theme === null || theme === undefined) { theme = 'light'; }
+            $('body').removeClass().addClass(theme);
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var sidebar = store.get('mdbook-sidebar');
+            if (sidebar === "hidden") { $("html").addClass("sidebar-hidden") }
+            else if (sidebar === "visible") { $("html").addClass("sidebar-visible") }
+        </script>
+
+        <div id="sidebar" class="sidebar">
+            <ul class="chapter"><li class="affix"><a href="title_page.html">Natural Proving with Naproche</a></li><li><a href="./introduction.html"><strong>1.</strong> Introduction</a></li><li><a href="./a_quick_introduction.html"><strong>2.</strong> Quick Start: 1 + 2 = 3 </a></li><li><a href="./mathematical_structures.html"><strong>3.</strong> Mathematical Structures</a></li><li><a href="./natural_language_aspects.html"><strong>4.</strong> Natural Language Aspects</a></li><li><a href="./terms.html"><strong>5.</strong> Terms</a></li><li><a href="./numbers.html"><strong>6.</strong> Numbers</a></li><li><a href="./proving_equations.html" class="active"><strong>7.</strong> Proving Equations</a></li><li><a href="./binomial_identities.html"><strong>8.</strong> Proving Binomial Identities in Naproche</a></li><li><a href="./ontological_correctness.html"><strong>9.</strong> Ontological Correctness</a></li><li><a href="./prettyprinting.html"><strong>10.</strong> LaTeX Prettyprinting</a></li><li><a href="./fractional_arithmetic.html"><strong>11.</strong> Fractional Arithmetic</a></li><li><strong>12.</strong> Relations</li><li><strong>13.</strong> Propositional Logic</li><li><strong>14.</strong> The Ordered Field of Reals</li><li><strong>15.</strong> Proving Inequalities</li><li><strong>16.</strong> ForTheL Statements and First-Order Logic</li><li><strong>17.</strong> The Natural Numbers</li><li><strong>18.</strong> Complete Induction</li><li><strong>19.</strong> Sets</li><li><strong>20.</strong> Functions</li><li><strong>21.</strong> ...</li></ul>
+        </div>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page" tabindex="-1">
+                
+                <div id="menu-bar" class="menu-bar">
+                    <div class="left-buttons">
+                        <i id="sidebar-toggle" class="fa fa-bars" title="Toggle sidebar"></i>
+                        <i id="theme-toggle" class="fa fa-paint-brush" title="Change theme"></i>
+                    </div>
+
+                    <h1 class="menu-title">Natural Proving with Naproche</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html">
+                            <i id="print-button" class="fa fa-print" title="Print this book"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div id="content" class="content">
+                    <a class="header" href="./proving_equations.html#proving-identities" id="proving-identities"><h1>Proving Identities</h1></a>
+<p>By symbolic calculations
+one can prove familiar binomial formulas like:</p>
+<p>Theorem. \((x+y)*(x-y)=x^2 - y^2 \).</p>
+<p>Equations are <em>basic mathematical statements</em> of the form
+\( r = s \) where \( r \) and \( s \) are terms as defined
+before. A canonical proof for \( r = s \) consists of a
+series \(t_0 = t_1\), \(t_1 = t_2\), ..., \(t_{n-1} = t_{n}\)
+of equations, which are &quot;obviously&quot; true and where \(r = t_0 \)
+and \(s = t_n \). Often, such equations are pulled together into
+one statement, a <em>chain of equations</em>:</p>
+<p>\( r = t_1 = t_2 = t_{n-1} = s\).</p>
+<p>The binomial formula can thus be proved by</p>
+<p>\((x+y)*(x-y) =
+x^2 - x*y + y*x -y^2 =
+x^2 - 0 - y^2 =
+x^2 - y^2 \).</p>
+<p>The equations in this chain are justified by factoring out
+\((x+y)*(x-y) \) and by simplifying \( - x*y + y*x \)
+to \( 0 \).</p>
+<p>We can now record our result more systematically in the usual
+<em>Theorem - Proof - Qed</em> style:</p>
+<p>Theorem. \((x+y)*(x-y)=x^2 - y^2 \).</p>
+<p>Proof.
+\((x+y)*(x-y) =
+x^2 - x*y + y*x -y^2 =
+x^2 - 0 - y^2 =
+x^2 - y^2 \).
+Qed.</p>
+<p>This proof is acceptable because the intended reader
+knows and trusts the algebraic manipulations.
+In general, whether proofs are acceptable to a human reader depends on
+many factors, and especially on the expertise of the reader.
+Moreover, proofs are written in a certain context, so that
+the acceptability of proofs is also dependent on facts
+established earlier in a text or in a lecture course.</p>
+<a class="header" href="./proving_equations.html#basic-algebraic-properties" id="basic-algebraic-properties"><h2>Basic Algebraic Properties</h2></a>
+<p>The algebraic manipulations used above can be reduced to
+simple properties of operations on numbers. Factoring out
+the product \((x+y)*(x-y) \) is justified by the property
+of <em>distributivity</em> \(x * (y + z) = (x * y) + (x * z)\).
+Since addition is <em>associative</em> (\( (x + y ) + z = x + (y + z) \)),
+the bracketing of multiple sums is irrelevant and can therefore
+be omitted. The <em>commutativity</em> of multiplication
+(\( x * y = y * x \)) justifies the cancellation
+\( - x*y + y*x = 0 \).</p>
+<p>Indeed by combining those basic properties one arrives at
+efficient algorithms for handling, e.g., products of polynomials.</p>
+<a class="header" href="./proving_equations.html#exercises" id="exercises"><h2>Exercises</h2></a>
+<ol>
+<li>
+<p>State and prove the binomial formulas for \( (x+y)^2 \),
+\( (x-y)^2 \), and \( (x+y)^3 \) in the above style.</p>
+</li>
+<li>
+<p>Prove a polynomial identity for
+\( (1 + x + x^2 + x^3) * (1 - x) \).</p>
+</li>
+</ol>
+<a class="header" href="./proving_equations.html#algebraic-axioms" id="algebraic-axioms"><h2>Algebraic Axioms</h2></a>
+<p>Modern algebra has identified a small list of
+basic properties suffices for the argumentations
+above. Such properties are then taken as as <em>axioms</em>
+which define classes of structures. We now state the such a
+system of <em>axioms</em> for <em>field</em>. This means that our notion
+of number is a field. There are several interesting fields, e.g.,
+the field of rational numbers, of real numbers, of complex numbers
+and several other fields that are studied in algebra.</p>
+<p>We state the axioms for fields in the natural language ForTheL.
+In &quot;free&quot; natural language, one would probably more elegant
+formulation, but this is just a question of style, and the linguistic
+variety of ForTheL could in principle also be extended. To make
+the following snippet self-contained it begins by
+recalling the language of numbers as introduced before.</p>
+<pre><code>[synonym number/numbers]
+Signature. A number is a mathematical object.
+Let x,y,z denote numbers.
+
+Signature. x + y is a number. Let the sum of x and y denote x + y.
+
+Signature. x * y is a number. Let the product of x and y denote x * y.
+
+Signature. - x is a number. Let the negative of x denote - x.
+
+Signature. 0 is a number.
+
+Signature. 1 is a number such that 1 != 0.
+
+Signature. Assume that x != 0. 1 / x is a number.
+
+Axiom 1. (x + y) + z = x + (y + z).
+
+Axiom 2. x + y = y + x.
+
+Axiom 3. x + 0 = x.
+
+Axiom 4. x + (-x) = 0.
+
+Axiom 5. (x * y) * z = x * (y * z).
+
+Axiom 6. x * y = y * x.
+
+Axiom 7. x * 1 = x.
+
+Axiom 8. Let x != 0. Then x * (1/x) = 1.
+
+Axiom 9. x * (y + z) = (x * y) + (x * z).
+</code></pre>
+<p>Note that subsystems of these axioms define other interesting classes
+of structures:</p>
+<ul>
+<li><em>groups</em>: Axioms 1,3,4;</li>
+<li><em>abelian groups</em>: Axioms 1,2,3,4;</li>
+<li><em>rings</em>: Axioms 1,2,3,4,5,9 plus the following symmetric version of
+Axiom 9: (x + y) * z = (x * z) + (y * z).</li>
+</ul>
+<a class="header" href="./proving_equations.html#proving-equalities-in-naproche" id="proving-equalities-in-naproche"><h2>Proving Equalities in Naproche</h2></a>
+<p>Naproche strives to model the reading and checking of mathematical
+texts by humans. It reads texts successively from &quot;left to right&quot;.
+At a given stage, Naproche has accumulated facts from the preceding
+text that are now available as premises for proofs. When the system
+encounters an equation without a subsequent proof, it tries to
+find a proof of the equation on its own or with the help of
+some external automated theorem prover (ATP), which in this
+tutorial is supposed to be Eprover, available through Systems
+on TPTP.</p>
+<p>The premises and the current conjecture are sent to
+Eprover; Eprover is then asked to search for a proof of the
+conjecture from the premises. A proof by Eprover consists of
+a series of applications of proof rules that are inplemented
+in the system. Many of Eprover's rules correspond to various
+<em>substitutions</em> of subterms of terms by equal terms.</p>
+<p>Consider the above</p>
+<p>Proof.
+\((x+y)*(x-y) =
+x^2 - x*y + y*x -y^2 =
+x^2 - 0 - y^2 =
+x^2 - y^2 \).
+Qed.</p>
+<p>The second equality
+\( x^2 - x*y + y*x -y^2 = x^2 - 0 - y^2 \) can
+be justified by</p>
+<ol>
+<li>
+<p>substituting \(y*x\) by \(x*y\)
+(on the basis of Axiom 6, the commutativity of \(*\)),</p>
+</li>
+<li>
+<p>substituting \( - x*y + x*y \) by \( + x*y - x*y \)
+(Axiom 2, the commutativity of \(+\)),</p>
+</li>
+<li>
+<p>substituting \( + x*y - x*y \) by \(0\) (Axiom 4).</p>
+</li>
+</ol>
+<p>Eprover has several proof rules at its disposition with which
+these substitutions can be carried out. Without going into
+the many technical details, there is, e.g., a rule</p>
+<p>\( \frac{s = t \vee S \;\;\;  u=v \vee R}
+{\sigma([u\vert p \leftarrow t] = v \vee S \vee R)} \)</p>
+<p>which is applicable if the term \(u\) has a part \(p\)
+which can be made identical to \(s\) by a common substitution
+\(\sigma\) of variables (&quot;unification&quot;). Then one generates the
+new equality
+\( \sigma([u\vert p \leftarrow t] = v) \)
+where t replaces the part of \(u\); the identifying substitution
+\(\sigma\) has to be applied to all terms in the new equality.
+(For simplicity we omit the further hypothesis \(S\) and
+\(R\).)</p>
+<p>This rule is able to generate the three substitutions mentioned
+above. So Eprover's search process through finite combinations
+of a small number of proof rules is able to prove the equality under
+consideration. Note that it is non-trivial to exactly
+specify the above proof rule: one needs to define and range
+over all possible subterms of a term under consideration, search
+for &quot;unifying&quot; substitutions, and apply them consistently to all
+formulas involved. Naproche aims to replace the &quot;intelligence&quot; of
+a human proof reader by search in a space of
+(instances of) proof rules.</p>
+<a class="header" href="./proving_equations.html#trying-to-prove-binomial-formulas-in-naproche" id="trying-to-prove-binomial-formulas-in-naproche"><h2>Trying to Prove Binomial Formulas in Naproche</h2></a>
+<p>Ordinary mathematics possesses notational possibilities and freedoms
+that are not yet implemented in Naproche. Writing</p>
+<p>\((x+y)^2=x^2 + 2*x*y + y^2 \)</p>
+<p>we use the associativity of addition and multiplication so that
+we don't need brackets to specify the order in which these
+<em>binary</em> operations are carried out. Furthermore we implicity assume
+that multiplication has higher priority than addition, so that the
+product \((2*x*y\) is carried out &quot;before&quot; the additions which
+again saves brackets. We intend
+to implement these conveniences in Naproche, but so far we have to
+write:</p>
+<pre><code>(x + y)^2 = (x^2 + ((2 * x) * y)) + y^2
+</code></pre>
+<p>Observing the notational requirements, we try to prove
+this formula directly from the axioms and input the following text:</p>
+<pre><code>[synonym number/numbers]
+Signature. A number is a mathematical object.
+Let x,y,z denote numbers.
+
+
+Signature. x + y is a number. Let the sum of x and y denote x + y.
+
+Signature. x * y is a number. Let the product of x and y denote x * y.
+
+Signature. - x is a number. Let the negative of x denote - x.
+
+Signature. 0 is a number.
+
+Signature. 1 is a number such that 1 != 0.
+
+Signature. Assume that x != 0. 1 / x is a number.
+
+Axiom. (x + y) + z = x + (y + z).
+
+Axiom. x + y = y + x.
+
+Axiom. x + 0 = x.
+
+Axiom. x + (-x) = 0.
+
+Axiom. (x * y) * z = x * (y * z).
+
+Axiom. x * y = y * x.
+
+Axiom. x * 1 = x.
+
+Axiom. Let x != 0. Then x * (1/x) = 1.
+
+Axiom. x * (y + z) = (x * y) + (x * z).
+
+
+Let x - y stand for x + (-y).
+Let x^2 stand for x * x.
+Let 2 stand for 1 + 1.
+
+Lemma. (x + y)^2 = (x^2 + ((2 * x) * y)) + y^2.
+</code></pre>
+<p>Naproche (and Eprover), however, are not able to check the correctness of
+the Lemma: the verification fails. With only the axioms
+available it is apparently
+impossible to find the right sequence of substitutions. But human
+mathematicians also have to spend some time thinking about
+the organization
+of the argument.</p>
+<p>Even adding the proof</p>
+<pre><code>Proof. (x + y)^2 = (x^2 + (x * y)) + ((y * x) + y^2) =
+(x^2 + ((x * y) + (y * x))) + y^2.
+Qed.
+</code></pre>
+<p>does not help.</p>
+<a class="header" href="./proving_equations.html#interactive-theorem-proving-itp" id="interactive-theorem-proving-itp"><h2>Interactive Theorem Proving (ITP)</h2></a>
+<p>The solution lies in an <em>interactive</em> approach. The human user
+formulates intermediate lemmas that can be proved easier or
+proof-checked automatically and which will build up to
+more sophisticated results. Let us first consider some simple
+consequences of the axioms.</p>
+<pre><code class="language-lean"># [synonym number/numbers]
+# Signature. A number is a mathematical object.
+# Let x,y,z denote numbers.
+# 
+# Signature. x + y is a number. Let the sum of x and y denote x + y.
+# 
+# Signature. x * y is a number. Let the product of x and y denote x * y.
+# 
+# Signature. - x is a number. Let the negative of x denote - x.
+# 
+# Signature. 0 is a number.
+# 
+# Signature. 1 is a number such that 1 != 0.
+# 
+# Signature. Assume that x != 0. 1 / x is a number.
+# 
+# Axiom. (x + y) + z = x + (y + z).
+# 
+# Axiom. x + y = y + x.
+# 
+# Axiom. x + 0 = x.
+# 
+# Axiom. x + (-x) = 0.
+# 
+# Axiom. (x * y) * z = x * (y * z).
+# 
+# Axiom. x * y = y * x.
+# 
+# Axiom. x * 1 = x.
+# 
+# Axiom. Let x != 0. Then x * (1/x) = 1.
+# 
+# Axiom. x * (y + z) = (x * y) + (x * z).
+# 
+# 
+Lemma. (y * x) + (z * x) = (y + z) * x.
+</code></pre>
+<p>This symmetric variant of the axiom of distributivity
+is immediately accepted by Naproche. It follows
+by a chain of simple substitutions, using the commutativity of \(*\). The canonical proof is also accepted by Naproche.</p>
+<pre><code class="language-lean"># [synonym number/numbers]
+# Signature. A number is a mathematical object.
+# Let x,y,z denote numbers.
+# 
+# Signature. x + y is a number. Let the sum of x and y denote x + y.
+# 
+# Signature. x * y is a number. Let the product of x and y denote x * y.
+# 
+# Signature. - x is a number. Let the negative of x denote - x.
+# 
+# Signature. 0 is a number.
+# 
+# Signature. 1 is a number such that 1 != 0.
+# 
+# Signature. Assume that x != 0. 1 / x is a number.
+# 
+# Axiom. (x + y) + z = x + (y + z).
+# 
+# Axiom. x + y = y + x.
+# 
+# Axiom. x + 0 = x.
+# 
+# Axiom. x + (-x) = 0.
+# 
+# Axiom. (x * y) * z = x * (y * z).
+# 
+# Axiom. x * y = y * x.
+# 
+# Axiom. x * 1 = x.
+# 
+# Axiom. Let x != 0. Then x * (1/x) = 1.
+# 
+# Axiom. x * (y + z) = (x * y) + (x * z).
+# 
+# 
+Lemma. (y * x) + (z * x) = (y + z) * x.
+Proof.
+(y * x) + (z * x) = (x * y) + (x * z) = x * (y + z) = (y + z) * x.
+Qed.
+</code></pre>
+<p>Continuing with the following lemma on left-cancellation, Eprover runs
+into difficulties. (The two other automated theorem provers
+available in the webinterface manage to prove both lemmas unaided.)</p>
+<pre><code class="language-lean"># [synonym number/numbers]
+# Signature. A number is a mathematical object.
+# Let x,y,z denote numbers.
+# 
+# Signature. x + y is a number. Let the sum of x and y denote x + y.
+# 
+# Signature. x * y is a number. Let the product of x and y denote x * y.
+# 
+# Signature. - x is a number. Let the negative of x denote - x.
+# 
+# Signature. 0 is a number.
+# 
+# Signature. 1 is a number such that 1 != 0.
+# 
+# Signature. Assume that x != 0. 1 / x is a number.
+# 
+# Axiom. (x + y) + z = x + (y + z).
+# 
+# Axiom. x + y = y + x.
+# 
+# Axiom. x + 0 = x.
+# 
+# Axiom. x + (-x) = 0.
+# 
+# Axiom. (x * y) * z = x * (y * z).
+# 
+# Axiom. x * y = y * x.
+# 
+# Axiom. x * 1 = x.
+# 
+# Axiom. Let x != 0. Then x * (1/x) = 1.
+# 
+# Axiom. x * (y + z) = (x * y) + (x * z).
+# 
+Lemma. (y * x) + (z * x) = (y + z) * x.
+ 
+Lemma. If x + y = x + z then y = z.
+</code></pre>
+<p>Apparently the obvious left-addition of <code>-x</code> does not occur to Eprover.
+So we give Eprover an explicit proof:</p>
+<pre><code class="language-lean"># [synonym number/numbers]
+# Signature. A number is a mathematical object.
+# Let x,y,z denote numbers.
+# 
+# Signature. x + y is a number. Let the sum of x and y denote x + y.
+# 
+# Signature. x * y is a number. Let the product of x and y denote x * y.
+# 
+# Signature. - x is a number. Let the negative of x denote - x.
+# 
+# Signature. 0 is a number.
+# 
+# Signature. 1 is a number such that 1 != 0.
+# 
+# Signature. Assume that x != 0. 1 / x is a number.
+# 
+# Axiom. (x + y) + z = x + (y + z).
+# 
+# Axiom. x + y = y + x.
+# 
+# Axiom. x + 0 = x.
+# 
+# Axiom. x + (-x) = 0.
+# 
+# Axiom. (x * y) * z = x * (y * z).
+# 
+# Axiom. x * y = y * x.
+# 
+# Axiom. x * 1 = x.
+# 
+# Axiom. Let x != 0. Then x * (1/x) = 1.
+# 
+# Axiom. x * (y + z) = (x * y) + (x * z).
+# 
+# 
+# Lemma. (y * x) + (z * x) = (y + z) * x.
+# 
+Lemma. If x + y = x + z then y = z.
+Proof. 
+Assume x + y = x + z. Then
+y = ((-x) + x) + y = (-x) + (x+y) = (-x) + (x+z) = ((-x) + x) + z = z.
+Qed.
+</code></pre>
+<a class="header" href="./proving_equations.html#exercises-1" id="exercises-1"><h2>Exercises</h2></a>
+<p>We propose several exercises with the following sequence of
+lemmas that will be useful
+for the binomial identities.</p>
+<pre><code class="language-lean"># [synonym number/numbers]
+# Signature. A number is a mathematical object.
+# Let x,y,z denote numbers.
+# 
+# Signature. x + y is a number. Let the sum of x and y denote x + y.
+# 
+# Signature. x * y is a number. Let the product of x and y denote x * y.
+# 
+# Signature. - x is a number. Let the negative of x denote - x.
+# 
+# Signature. 0 is a number.
+# 
+# Signature. 1 is a number such that 1 != 0.
+# 
+# Signature. Assume that x != 0. 1 / x is a number.
+# 
+# Axiom. (x + y) + z = x + (y + z).
+# 
+# Axiom. x + y = y + x.
+# 
+# Axiom. x + 0 = x.
+# 
+# Axiom. x + (-x) = 0.
+# 
+# Axiom. (x * y) * z = x * (y * z).
+# 
+# Axiom. x * y = y * x.
+# 
+# Axiom. x * 1 = x.
+# 
+# Axiom. Let x != 0. Then x * (1/x) = 1.
+# 
+# Axiom. x * (y + z) = (x * y) + (x * z).
+# 
+# 
+# Lemma. (y * x) + (z * x) = (y + z) * x.
+# 
+# Lemma. If x + y = x + z then y = z.
+# Proof. 
+# Assume x + y = x + z. Then
+# y = ((-x) + x) + y = (-x) + (x+y) = (-x) + (x+z) = ((-x) + x) + z = z.
+# Qed.
+# 
+Lemma. If x + y = x then y = 0.
+
+Lemma. -(-x) = x.
+
+Lemma. If x != 0 and x * y = x * z then y = z.
+
+Lemma. If x != 0 and x * y = 1 then y = 1/x.
+
+Lemma. If x != 0 then 1/(1/x) = x.
+
+Lemma. 0 * x = 0.
+
+Lemma. If x != 0 and y != 0 then x * y != 0.
+
+Lemma. (-x) * y = -(x * y).
+
+Lemma. -x = -1 * x.
+
+Lemma. (-x) * (-y) = x * y.
+</code></pre>
+<ol start="3">
+<li>
+<p>Prove these lemmas by &quot;ordinary proofs&quot;.</p>
+</li>
+<li>
+<p>Formulate these proofs so that they are accepted by Naproche.</p>
+</li>
+<li>
+<p>Which of the lemmas can Naproche verify without an explicit proof?
+Augment the list of lemmas so that the whole document is accepted
+by Naproche.</p>
+</li>
+</ol>
+
+                </div>
+
+                <!-- Mobile navigation buttons -->
+                
+                    <a rel="prev" href="./numbers.html" class="mobile-nav-chapters previous" title="Previous chapter">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                
+
+                
+                    <a rel="next" href="./binomial_identities.html" class="mobile-nav-chapters next" title="Next chapter">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+                
+
+            </div>
+
+            
+                <a href="./numbers.html" class="nav-chapters previous" title="You can navigate through the chapters using the arrow keys">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+            
+
+            
+                <a href="./binomial_identities.html" class="nav-chapters next" title="You can navigate through the chapters using the arrow keys">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+            
+
+        </div>
+
+
+        <!-- Local fallback for Font Awesome -->
+        <script>
+            if ($(".fa").css("font-family") !== "FontAwesome") {
+                $('<link rel="stylesheet" type="text/css" href="_FontAwesome/css/font-awesome.css">').prependTo('head');
+            }
+        </script>
+
+        <!-- Livereload script (if served using the cli tool) -->
+        
+
+        
+
+        
+
+        
+
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
+
+        <!-- Custom JS script -->
+        
+
+    </body>
+</html>

@@ -1,0 +1,307 @@
+<!DOCTYPE HTML>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Numbers - Natural Proving with Naproche</title>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <base href="">
+
+        <link rel="stylesheet" href="book.css">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+        <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:500" rel="stylesheet" type="text/css">
+
+        <link rel="shortcut icon" href="favicon.png">
+
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme -->
+        
+
+        
+        <!-- MathJax -->
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        
+
+        <!-- Fetch Clipboard.js from CDN but have a local fallback -->
+        <script src="https://cdn.jsdelivr.net/clipboard.js/1.6.1/clipboard.min.js"></script>
+        <script>
+            if (typeof Clipboard == 'undefined') {
+                document.write(unescape("%3Cscript src='clipboard.min.js'%3E%3C/script%3E"));
+            }
+        </script>
+
+        <!-- Fetch JQuery from CDN but have a local fallback -->
+        <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+        <script>
+            if (typeof jQuery == 'undefined') {
+                document.write(unescape("%3Cscript src='jquery.js'%3E%3C/script%3E"));
+            }
+        </script>
+
+        <!-- Fetch store.js from local - TODO add CDN when 2.x.x is available on cdnjs -->
+        <script src="store.js"></script>
+
+    </head>
+    <body class="light">
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme = store.get('mdbook-theme');
+            if (theme === null || theme === undefined) { theme = 'light'; }
+            $('body').removeClass().addClass(theme);
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var sidebar = store.get('mdbook-sidebar');
+            if (sidebar === "hidden") { $("html").addClass("sidebar-hidden") }
+            else if (sidebar === "visible") { $("html").addClass("sidebar-visible") }
+        </script>
+
+        <div id="sidebar" class="sidebar">
+            <ul class="chapter"><li class="affix"><a href="title_page.html">Natural Proving with Naproche</a></li><li><a href="./introduction.html"><strong>1.</strong> Introduction</a></li><li><a href="./a_quick_introduction.html"><strong>2.</strong> Quick Start: 1 + 2 = 3 </a></li><li><a href="./mathematical_structures.html"><strong>3.</strong> Mathematical Structures</a></li><li><a href="./natural_language_aspects.html"><strong>4.</strong> Natural Language Aspects</a></li><li><a href="./terms.html"><strong>5.</strong> Terms</a></li><li><a href="./numbers.html" class="active"><strong>6.</strong> Numbers</a></li><li><a href="./proving_equations.html"><strong>7.</strong> Proving Equations</a></li><li><a href="./binomial_identities.html"><strong>8.</strong> Proving Binomial Identities in Naproche</a></li><li><a href="./ontological_correctness.html"><strong>9.</strong> Ontological Correctness</a></li><li><a href="./prettyprinting.html"><strong>10.</strong> LaTeX Prettyprinting</a></li><li><a href="./fractional_arithmetic.html"><strong>11.</strong> Fractional Arithmetic</a></li><li><strong>12.</strong> Relations</li><li><strong>13.</strong> Propositional Logic</li><li><strong>14.</strong> The Ordered Field of Reals</li><li><strong>15.</strong> Proving Inequalities</li><li><strong>16.</strong> ForTheL Statements and First-Order Logic</li><li><strong>17.</strong> The Natural Numbers</li><li><strong>18.</strong> Complete Induction</li><li><strong>19.</strong> Sets</li><li><strong>20.</strong> Functions</li><li><strong>21.</strong> ...</li></ul>
+        </div>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page" tabindex="-1">
+                
+                <div id="menu-bar" class="menu-bar">
+                    <div class="left-buttons">
+                        <i id="sidebar-toggle" class="fa fa-bars" title="Toggle sidebar"></i>
+                        <i id="theme-toggle" class="fa fa-paint-brush" title="Change theme"></i>
+                    </div>
+
+                    <h1 class="menu-title">Natural Proving with Naproche</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html">
+                            <i id="print-button" class="fa fa-print" title="Print this book"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div id="content" class="content">
+                    <a class="header" href="./numbers.html#numbers" id="numbers"><h1>Numbers</h1></a>
+<p>Numbers are the most important mathematical objects. They
+comprise the natural numbers, real numbers, complex numbers.
+In this chapter we shall introduce general numbers
+which will be equipped with the usual arithmetical
+operations and axioms.</p>
+<pre><code>[synonym number/numbers]
+Signature. A number is a mathematical object.
+Let x,y,z denote numbers.
+
+Signature. x + y is a number. Let the sum of x and y denote x + y.
+
+Signature. x * y is a number. Let the product of x and y denote x * y.
+
+Signature. - x is a number. Let the negative of x denote - x.
+
+Signature. 0 is a number.
+
+Signature. 1 is a number such that 1 != 0.
+
+Signature. Assume that x != 0. 1 / x is a number.
+</code></pre>
+<p>Note that we can &quot;pre-type&quot; variables by a command of the form</p>
+<pre><code>Let x,y,z denote numbers.
+</code></pre>
+<p>This has the same effect as putting something like
+<code>Let x,y,z be numbers.</code> in the beginning of subsequent
+commands.</p>
+<p>Real numbers are numbers, and they are closed under the
+arithmetical operations. This makes the structure of the real numbers a
+substructure of the structure of all numbers.
+The closure properties are expressed by axioms.</p>
+<pre><code class="language-lean"># [synonym number/numbers]
+# Signature. A number is a mathematical object.
+# Let x,y,z denote numbers.
+# 
+# Signature. x + y is a number. Let the sum of x and y denote x + y.
+# 
+# Signature. x * y is a number. Let the product of x and y denote x * y.
+# 
+# Signature. - x is a number. Let the negative of x denote - x.
+# 
+# Signature. 0 is a number.
+# 
+# Signature. 1 is a number such that 1 != 0.
+# 
+# Signature. Assume that x != 0. 1 / x is a number.
+# [synonym real/reals]
+Signature. A real number is a number.
+Let a real stand for a real number. 
+Let u,v,w denote reals.
+
+Axiom. u + v is a real.
+
+Axiom. u * v is a real.
+
+Axiom. - u is a real.
+
+Axiom. 0,1 are reals.
+
+Axiom. Assume that u != 0. Then 1 / u is a real.
+</code></pre>
+<p>The standard natural numbers are the numbers
+\( 0, 1, 2 = 1 + 1, 3 = 2 + 1, \dots \) . These are all real numbers, and
+so we postulate that the natural numbers are real numbers.
+The natural numbers do not satisfy certain closure properties, since
+\( -1 \) or \( 1 / 2 \) are not natural numbers.</p>
+<pre><code class="language-lean"># [synonym number/numbers]
+# Signature. A number is a mathematical object.
+# Let x,y,z denote numbers.
+# 
+# Signature. x + y is a number. Let the sum of x and y denote x + y.
+# 
+# Signature. x * y is a number. Let the product of x and y denote x * y.
+# 
+# Signature. - x is a number. Let the negative of x denote - x.
+# 
+# Signature. 0 is a number.
+# 
+# Signature. 1 is a number such that 1 != 0.
+# 
+# Signature. Assume that x != 0. 1 / x is a number.
+# 
+# [synonym real/reals]
+# Signature. A real number is a number.
+# Let a real stand for a real number. 
+# Let u,v,w denote reals.
+# 
+# Axiom. u + v is a real.
+# 
+# Axiom. u * v is a real.
+# 
+# Axiom. - u is a real.
+# 
+# Axiom. 0,1 are reals.
+# 
+# Axiom. Assume that u != 0. Then 1 / u is a real.
+# 
+Signature. A natural number is a real.
+Let l,m,n denote natural numbers.
+
+Axiom. m + n is a natural number.
+
+Axiom. m * n is a natural number.
+
+Axiom. 0,1 are natural numbers.
+</code></pre>
+<p>Note that the obviously equivalent <code>Signature</code> command</p>
+<pre><code>Signature. A natural number is a real number.
+</code></pre>
+<p>leads to ambiguous parsing since the initial segment
+&quot;A natural number is a real&quot; is also acceptable
+due to the command <code>Let a real stand for a real number.</code>
+(Try this for yourself.) Perhaps that parser command is
+not a good idea.</p>
+<p>Obviously every natural number is a number in the general sense.
+This can also be checked by Naproche:</p>
+<pre><code class="language-lean"># [synonym number/numbers]
+# Signature. A number is a mathematical object.
+# Let x,y,z denote numbers.
+# 
+# Signature. x + y is a number. Let the sum of x and y denote x + y.
+# 
+# Signature. x * y is a number. Let the product of x and y denote x * y.
+# 
+# Signature. - x is a number. Let the negative of x denote - x.
+# 
+# Signature. 0 is a number.
+# 
+# Signature. 1 is a number such that 1 != 0.
+# 
+# Signature. Assume that x != 0. 1 / x is a number.
+# 
+# [synonym real/reals]
+# Signature. A real number is a number.
+# Let a real stand for a real number. 
+# Let u,v,w denote reals.
+# 
+# Axiom. u + v is a real.
+# 
+# Axiom. u * v is a real.
+# 
+# Axiom. - u is a real.
+# 
+# Axiom. 0,1 are reals.
+# 
+# Axiom. Assume that u != 0. Then 1 / u is a real.
+# 
+# Signature. A natural number is a real.
+# Let l,m,n denote natural numbers.
+# 
+# Axiom. m + n is a natural number.
+# 
+# Axiom. m * n is a natural number.
+# 
+# Axiom. 0,1 are natural numbers.
+# 
+Lemma. Every natural number is a number.
+</code></pre>
+
+                </div>
+
+                <!-- Mobile navigation buttons -->
+                
+                    <a rel="prev" href="./terms.html" class="mobile-nav-chapters previous" title="Previous chapter">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                
+
+                
+                    <a rel="next" href="./proving_equations.html" class="mobile-nav-chapters next" title="Next chapter">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+                
+
+            </div>
+
+            
+                <a href="./terms.html" class="nav-chapters previous" title="You can navigate through the chapters using the arrow keys">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+            
+
+            
+                <a href="./proving_equations.html" class="nav-chapters next" title="You can navigate through the chapters using the arrow keys">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+            
+
+        </div>
+
+
+        <!-- Local fallback for Font Awesome -->
+        <script>
+            if ($(".fa").css("font-family") !== "FontAwesome") {
+                $('<link rel="stylesheet" type="text/css" href="_FontAwesome/css/font-awesome.css">').prependTo('head');
+            }
+        </script>
+
+        <!-- Livereload script (if served using the cli tool) -->
+        
+
+        
+
+        
+
+        
+
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
+
+        <!-- Custom JS script -->
+        
+
+    </body>
+</html>

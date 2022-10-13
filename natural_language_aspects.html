@@ -1,0 +1,410 @@
+<!DOCTYPE HTML>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Natural Language Aspects - Natural Proving with Naproche</title>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <base href="">
+
+        <link rel="stylesheet" href="book.css">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+        <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:500" rel="stylesheet" type="text/css">
+
+        <link rel="shortcut icon" href="favicon.png">
+
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme -->
+        
+
+        
+        <!-- MathJax -->
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        
+
+        <!-- Fetch Clipboard.js from CDN but have a local fallback -->
+        <script src="https://cdn.jsdelivr.net/clipboard.js/1.6.1/clipboard.min.js"></script>
+        <script>
+            if (typeof Clipboard == 'undefined') {
+                document.write(unescape("%3Cscript src='clipboard.min.js'%3E%3C/script%3E"));
+            }
+        </script>
+
+        <!-- Fetch JQuery from CDN but have a local fallback -->
+        <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+        <script>
+            if (typeof jQuery == 'undefined') {
+                document.write(unescape("%3Cscript src='jquery.js'%3E%3C/script%3E"));
+            }
+        </script>
+
+        <!-- Fetch store.js from local - TODO add CDN when 2.x.x is available on cdnjs -->
+        <script src="store.js"></script>
+
+    </head>
+    <body class="light">
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme = store.get('mdbook-theme');
+            if (theme === null || theme === undefined) { theme = 'light'; }
+            $('body').removeClass().addClass(theme);
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var sidebar = store.get('mdbook-sidebar');
+            if (sidebar === "hidden") { $("html").addClass("sidebar-hidden") }
+            else if (sidebar === "visible") { $("html").addClass("sidebar-visible") }
+        </script>
+
+        <div id="sidebar" class="sidebar">
+            <ul class="chapter"><li class="affix"><a href="title_page.html">Natural Proving with Naproche</a></li><li><a href="./introduction.html"><strong>1.</strong> Introduction</a></li><li><a href="./a_quick_introduction.html"><strong>2.</strong> Quick Start: 1 + 2 = 3 </a></li><li><a href="./mathematical_structures.html"><strong>3.</strong> Mathematical Structures</a></li><li><a href="./natural_language_aspects.html" class="active"><strong>4.</strong> Natural Language Aspects</a></li><li><a href="./terms.html"><strong>5.</strong> Terms</a></li><li><a href="./numbers.html"><strong>6.</strong> Numbers</a></li><li><a href="./proving_equations.html"><strong>7.</strong> Proving Equations</a></li><li><a href="./binomial_identities.html"><strong>8.</strong> Proving Binomial Identities in Naproche</a></li><li><a href="./ontological_correctness.html"><strong>9.</strong> Ontological Correctness</a></li><li><a href="./prettyprinting.html"><strong>10.</strong> LaTeX Prettyprinting</a></li><li><a href="./fractional_arithmetic.html"><strong>11.</strong> Fractional Arithmetic</a></li><li><strong>12.</strong> Relations</li><li><strong>13.</strong> Propositional Logic</li><li><strong>14.</strong> The Ordered Field of Reals</li><li><strong>15.</strong> Proving Inequalities</li><li><strong>16.</strong> ForTheL Statements and First-Order Logic</li><li><strong>17.</strong> The Natural Numbers</li><li><strong>18.</strong> Complete Induction</li><li><strong>19.</strong> Sets</li><li><strong>20.</strong> Functions</li><li><strong>21.</strong> ...</li></ul>
+        </div>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page" tabindex="-1">
+                
+                <div id="menu-bar" class="menu-bar">
+                    <div class="left-buttons">
+                        <i id="sidebar-toggle" class="fa fa-bars" title="Toggle sidebar"></i>
+                        <i id="theme-toggle" class="fa fa-paint-brush" title="Change theme"></i>
+                    </div>
+
+                    <h1 class="menu-title">Natural Proving with Naproche</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html">
+                            <i id="print-button" class="fa fa-print" title="Print this book"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div id="content" class="content">
+                    <a class="header" href="./natural_language_aspects.html#natural-language-aspects" id="natural-language-aspects"><h1>Natural Language Aspects</h1></a>
+<p>Natural language describes &quot;the world&quot;. Similarly the language
+of mathematics describes a &quot;mathematical universe&quot;, inhabited
+by &quot;mathematical objects&quot; which have certain properties and
+are in certain relations to each other.
+Certain categories of words
+like nouns, verbs, or adjectives are used for different kinds
+of entities
+and properties in &quot;the world&quot; as well as in the &quot;mathematical universe&quot;.</p>
+<a class="header" href="./natural_language_aspects.html#nouns-and-notions" id="nouns-and-notions"><h2>Nouns and Notions</h2></a>
+<p>In natural language</p>
+<ul>
+<li><em>nouns</em></li>
+</ul>
+<p>are used as names for specific objects or sets of objects.
+One distinguishes between <em>proper nouns</em>, which represent unique
+entities, and <em>common nouns</em> which describe a class of entities.
+<em>Venus</em> is a proper noun naming a specific planet, whereas
+<em>planet</em> is a common noun.
+In mathematics, corresponding examples would be &quot;Zero&quot; and
+&quot;natural number&quot;.</p>
+<pre><code>Signature. A planet is a notion.
+Signature. Venus is a star.
+</code></pre>
+<p>or, in mathematics:</p>
+<pre><code>Signature. An integer is a notion.
+Signature. Zero is an integer.
+</code></pre>
+<p>A characteristic feature of mathematical language is the use
+of symbolic notation to make statements concise and
+exact. One can use symbols like \(e, \pi, \mathbb{N}\) as
+identifiers for certain mathematical &quot;mathematical nouns&quot;.</p>
+<p>In the ASCII format of ForTheL we can introduce symbolic
+constants by:</p>
+<pre><code>Signature. A real number is a notion.
+Signature. e is a real number.
+Signature. pi is a real number.
+Signature. NAT is a notion.
+</code></pre>
+<p>It is also possible to use ASCII symbols like:</p>
+<pre><code>Signature. A binary relation is a notion.
+Signature. &lt; is a binary relation.
+Signature. &lt;&lt; is a binary relation.
+Signature. | is a binary relation.
+</code></pre>
+<p>Since backslashes <code>\</code> and braces <code>{ }</code> are acceptable
+in identifiers, we can
+also use LaTeX like names:</p>
+<pre><code>Signature. A real is a notion.
+Signature. \pi is a real.
+Signature. \mathbb{N} is a real.
+</code></pre>
+<p>Indeed we shall later encounter a LaTeX dialect of ForTheL.</p>
+<a class="header" href="./natural_language_aspects.html#exercise" id="exercise"><h3>Exercise</h3></a>
+<ol>
+<li>Explore which which kinds of identifiers are accepted by Naproche.
+Note that there are some ForTheL keywords and inbuilt identifiers
+that should not be used as user-defined identifiers.</li>
+</ol>
+<a class="header" href="./natural_language_aspects.html#noun-patterns" id="noun-patterns"><h3>Noun Patterns</h3></a>
+<p>Mathematics also uses fixed combinations of several words as
+identifiers: &quot;complex number&quot;, &quot;topological space&quot;, &quot;neutral
+element&quot;, ... that we call <em>noun patterns</em>.
+In natural language <em>noun phrases</em>
+can be interpreted by analysing how they are built from
+nouns, adjectives and other words.
+In mathematics, however, noun patterns are usally interpreted as
+indivisible basic
+entities: the technical meaning of
+&quot;complex number&quot; cannot be
+reconstructed from separate meanings
+of &quot;complex&quot; and &quot;number&quot;.</p>
+<p>With noun patterns one uses <em>articles</em> &quot;a&quot; or &quot;the&quot; to
+distinguish &quot;proper&quot; and &quot;common&quot; usage.
+&quot;<em>A</em> complex number&quot; denotes the &quot;common&quot; class of complex numbers
+of which &quot;<em>the</em> imaginary unit&quot; is a specific element.</p>
+<pre><code>Signature. A complex number is a notion.
+Signature. The imaginary unit is a complex number.
+</code></pre>
+<a class="header" href="./natural_language_aspects.html#naproche-natural-language-processing" id="naproche-natural-language-processing"><h2>Naproche Natural Language Processing</h2></a>
+<p>Naproche translates the ForTheL input language into a completely
+formal internal representation which is adequate for further
+processing and proof-checking. In the web interface one can view
+(a pretty-printed version of) the translation by pressing
+the <em>Translate</em> button. The following definition of a language
+for addition on \(\mathbb{N}\)</p>
+<pre><code>[synonym number/numbers]
+Signature. A natural number is a notion.
+Signature. 0 is a natural number.
+Signature. 1 is a natural number.
+Signature. Assume that k,l are natural numbers.
+k + l is a natural number.
+</code></pre>
+<p>translates to</p>
+<pre><code>[Translation] hypothesis.
+  assume forall v0 ((HeadTerm :: aNaturalNumber(v0)) implies truth.
+[Translation] hypothesis.
+  assume forall v0 ((HeadTerm :: v0 = 0) implies aNaturalNumber(v0)).
+[Translation] hypothesis.
+  assume forall v0 ((HeadTerm :: v0 = 1) implies aNaturalNumber(v0)).
+[Translation] hypothesis.
+  assume (aNaturalNumber(k) and aNaturalNumber(l)).
+  assume forall v0 ((HeadTerm :: v0 = k+l) implies aNaturalNumber(v0)).
+</code></pre>
+<p>We can see that the phrase &quot;natural number&quot;
+is internally represented by a unary predicate <code>aNaturalNumber( )</code> and
+that the symbols 0,1, and + have also been accepted. The translations
+expresses <em>ontological</em> properties of the newly introduced symbols, e.g.,
+that the result of applying + to two natural numbers k,l is again
+a natural number. These properties are marked as assumptions (<code>assume</code>)
+for future use.</p>
+<p>A Naproche user is supposed to write a ForTheL text which
+naturally expresses
+the intended mathematical content and which at the same time is
+faithfully translated into Naproche's internal representation.
+Sometimes our natural language intuitions may flexibly
+accept formulations which are not translated adequately by
+the schematic procedures of Naproche. In case of doubt it is therefore
+advisable to check the formal translations. We shall later
+give more information on the internal logic format.</p>
+<a class="header" href="./natural_language_aspects.html#naproche-parsing" id="naproche-parsing"><h3>Naproche Parsing</h3></a>
+<p>Naproche tries to algorithically model a human reader
+who reads text sequentially from left to right. The text is
+processed as a list of tokens, i.e., a <em>tokenizer</em> separates it
+into words and symbols, ignoring whitespace.
+The text</p>
+<pre><code>Signature. A natural number is a notion.
+</code></pre>
+<p>is separated into the token list</p>
+<pre><code>[&quot;signature&quot;, &quot;.&quot;, &quot;a&quot;, &quot;natural&quot;, &quot;number&quot;, &quot;is&quot;, &quot;a&quot;, &quot;notion&quot;, &quot;.&quot;]
+</code></pre>
+<p>The parser, starting from its initial state, reads &quot;signature&quot;, which
+lets it expect a fullstop &quot;.&quot; and a subsequent signature specification.
+Such specifications have to be in certain prescribed shapes or
+<em>patterns</em> like</p>
+<pre><code>[&quot;a&quot;, _ , &quot;is&quot;, &quot;a&quot;, _ , &quot;.&quot;]
+</code></pre>
+<p>or</p>
+<pre><code>[ _ , &quot;is&quot;, &quot;a&quot;, _ , &quot;.&quot;]
+</code></pre>
+<p>The underscores <code>_</code> indicate holes where other patterns of certain
+kinds can be inserted;
+in  our example, this is the pattern
+<code>[&quot;natural&quot;, &quot;number&quot;]</code> for a new notion and the
+keyword pattern <code>[&quot;notion&quot;]</code>.
+After successfully parsing the sentence the unary predicate symbol
+<code>aNaturalNumber( )</code> is generated and an assumption</p>
+<pre><code>assume forall v0 ((HeadTerm :: aNaturalNumber(v0)) implies truth.
+</code></pre>
+<p>is recorded for further use (note that in this simple case the
+statement is logically trivial since a formula <code>... implies truth</code>
+is always true).</p>
+<a class="header" href="./natural_language_aspects.html#formal-grammar" id="formal-grammar"><h3>Formal Grammar</h3></a>
+<p>We see that Naproche treats ForTheL as a <em>pattern-based</em> language
+whose sentence are built by iteratively inserting patterns
+into patterns. The allowed patterns are specified in the <em>grammar</em>
+of ForTheL. An excerpt of the ForTheL grammar which pertains
+to our example
+is given by the following rules in Backus-Naur form (BNF):</p>
+<pre><code>text → { toplevel | ... }
+toplevel → axiom | definition | signature | proposition
+signature → sigHeader { assume } sigAffirm
+sigHeader → Signature [ label ] .
+sigAffirm → sigStatement .
+sigStatement → notionSig | ...
+notionSig → notionHead is [ a | an ] ( classNoun | notion )
+notionHead → [ a | an ] primClassNoun
+           |notionPattern
+notionPattern → (a | an) pattern
+pattern → token { token } [ variable { token { token } variable } ]
+...
+</code></pre>
+<p>The grammar shows that there are some alternatives for the
+formulation of our <code>Signature</code> statement.
+We recommend to experiment with Naproche and use the
+translation option.</p>
+<a class="header" href="./natural_language_aspects.html#exercises" id="exercises"><h2>Exercises</h2></a>
+<ol>
+<li>
+<p>Try to find more grammatical alternatives to the above
+<code>Signature</code> statements and compare their logic translations.</p>
+</li>
+<li>
+<p>Make experiments to find out the range of possible phrases
+that can be used for notions. Can one introduce the notion
+of a p-group, a group of order p, or an mxn-matrix?
+Can &quot;a&quot; or &quot;A&quot; be used as identifiers for constants? Explain!</p>
+</li>
+<li>
+<p>What is wrong with the Lemma:<br>
+<code>Lemma. Every natural number is a number.</code></p>
+</li>
+<li>
+<p>Toplevel commands can be labeled like <br>
+<code>Axiom Associativity. Let x,y,z be natural numbers. Then (x + y) +z = x + (y + z).</code> <br>
+The label &quot;Associativity&quot; serves as a comment, and it can later
+be used to invoke specific premisses: &quot;(by Associativity)&quot;.
+Find out, which kinds of labels
+are accepted by Naproche.</p>
+</li>
+</ol>
+<a class="header" href="./natural_language_aspects.html#further-aspects" id="further-aspects"><h2>Further Aspects</h2></a>
+<p>Some grammatical phrases may have different meanings in similar
+but different environments. &quot;is a&quot; is part of <code>Signature</code> commands,
+but it may also be interpreted as equality, e.g.,
+in <code>Definition</code> commands. The following text is checked correct:</p>
+<pre><code>[synonym number/numbers]
+Signature. A natural number is a notion.
+
+Signature. 1 is a natural number.
+
+Definition. 2 is a natural number.
+
+Lemma. 1 = 2.
+</code></pre>
+<p>The reason lies with the <code>Definition</code>: it translates to
+the equivalence</p>
+<pre><code>assume forall v0 ((HeadTerm :: v0 = 2) iff aNaturalNumber(v0)).
+</code></pre>
+<p>which identifies all natural numbers with 2. Admittedly, the
+phrasing of the definition does not sound quite right, but the
+best way to check is by inspecting the translation.</p>
+<p>In natural language one often uses alternative phrases
+for some notion to achieve grammatical correctness or some
+flexibility of expression. One can identify tokens by <code>synonym</code> commands.
+After</p>
+<pre><code>[synonym number/numbers]
+</code></pre>
+<p>the tokens &quot;number&quot; and &quot;numbers&quot; are the same with respect to
+tokenizing and parsing. So we can (and should!) use correct
+grammatical (singular/plural) forms in the formalization.</p>
+<p>One can also introduce alternative patterns for existing
+patterns by <code>Let ... stand for ... .</code> or
+<code>Let ... denote ... .</code> commands.</p>
+<pre><code>[synonym number/numbers]
+Signature. A natural number is a notion.
+Let an integer stand for a natural number.
+
+Signature. 1 is an integer.
+
+Let ONE stand for 1.
+
+Lemma. ONE = 1.
+</code></pre>
+<p>Again, experimentation and translation of this text shows
+that its grammatical
+correctness and its semantics depend subtly on single words, in
+particular on the use of the inconspicuous but very ambiguous
+token &quot;a&quot;.</p>
+<a class="header" href="./natural_language_aspects.html#jabberwocky" id="jabberwocky"><h2>Jabberwocky</h2></a>
+<p>Note that Naproche allows
+completely nonsensical identifiers since Naproche does not have
+an English vocabulary and mathematical intuitions. Therefore
+it is possible to postulate, following a quote ascribed to Hilbert</p>
+<p><em>Man muß jederzeit an Stelle
+von 'Punkte, Geraden, Ebenen',
+'Tische, Stühle, Bierseidel' sagen
+können</em>:</p>
+<pre><code>Signature. A Bierseidel is a notion. 
+</code></pre>
+<p>Since ForTheL texts are intended for human readability and understanding,
+choosing fitting identifiers is a question of good style and writing.</p>
+
+                </div>
+
+                <!-- Mobile navigation buttons -->
+                
+                    <a rel="prev" href="./mathematical_structures.html" class="mobile-nav-chapters previous" title="Previous chapter">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                
+
+                
+                    <a rel="next" href="./terms.html" class="mobile-nav-chapters next" title="Next chapter">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+                
+
+            </div>
+
+            
+                <a href="./mathematical_structures.html" class="nav-chapters previous" title="You can navigate through the chapters using the arrow keys">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+            
+
+            
+                <a href="./terms.html" class="nav-chapters next" title="You can navigate through the chapters using the arrow keys">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+            
+
+        </div>
+
+
+        <!-- Local fallback for Font Awesome -->
+        <script>
+            if ($(".fa").css("font-family") !== "FontAwesome") {
+                $('<link rel="stylesheet" type="text/css" href="_FontAwesome/css/font-awesome.css">').prependTo('head');
+            }
+        </script>
+
+        <!-- Livereload script (if served using the cli tool) -->
+        
+
+        
+
+        
+
+        
+
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
+
+        <!-- Custom JS script -->
+        
+
+    </body>
+</html>
