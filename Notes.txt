@@ -1,0 +1,17 @@
+
+ 
+Vektorräume, Arithmetik mit 0 und 1, Boolesche Algebren mit
+True and False, Geometrische Situationen mit Punkten, Geraden, etc.
+
+Komplexe Zahlen mit i, d.h. es wird ein spezielles Element i postuliert,
+mit i^2 = -1, und dann kann man Ausdrücken rechnen, die i enthalten
+(+ und * und /, etc.)
+
+Man könnte auch weitere polynomiale Fragen betrachten, z.B. Nullstellen von
+konkreten Polynomen.
+
+Partielle Ordnungen (mit speziellen Elementen???)
+Gruppen
+
+Dependent notions?
+
